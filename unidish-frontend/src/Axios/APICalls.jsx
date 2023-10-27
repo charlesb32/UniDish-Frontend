@@ -13,3 +13,14 @@ export const checkDBConnection = async () => {
     // throw err;
   }
 };
+
+export const addUser = async (userData) => {
+  try {
+    const response = await instance.post("/addUser", { userData });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    alert(error.response.data.message);
+    return error;
+  }
+};
