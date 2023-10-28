@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import Logo from "../Assets/Logo.jpg";
 import { useNavigate } from "react-router-dom";
-// import { login } from "../Axios/APICalls";
+import { login } from "../Axios/APICalls";
+import { setAuthToken } from "../Axios/setAuthToken";
 // import { setAuthToken } from "../Axios/setAuthToken";
 // import { getUser } from "../Axios/APICalls";
 // import { useDispatch } from "react-redux";
@@ -43,7 +44,19 @@ const Login = () => {
   //       console.error("Error during login:", error);
   //     }
   //   };
-  const handleLogin = () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const loginResponse = await login(formData);
+      if (loginResponse && localStorage.getItem("token")) {
+        const token = localStorage.getItem("token");
+        setAuthToken(token);
+        // const userResponse = await getUser();
+      }
+      console.log(loginResponse);
+    } catch (err) {
+      console.log("Error during login:", err);
+    }
     console.log("LOGIN ATTEMPT");
   };
   return (
