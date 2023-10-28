@@ -8,9 +8,11 @@ import DiningHall from "./Pages/DiningHall";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignUp from "./Pages/Signup";
 import Login from "./Pages/Login";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useSelector((state) => state.user.userInfo);
   if (isLoggedIn) {
     return (
       <div className="App">

@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import Logo from "../Assets/Logo.jpg";
 import { useNavigate } from "react-router-dom";
-import { login } from "../Axios/APICalls";
+import { login, getUserByToken } from "../Axios/APICalls";
 import { setAuthToken } from "../Axios/setAuthToken";
 // import { setAuthToken } from "../Axios/setAuthToken";
 // import { getUser } from "../Axios/APICalls";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "../Redux/userActions";
 // import { setUserInfo } from "../Redux/userActions";
 
 const Login = () => {
   const navigate = useNavigate();
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -51,6 +52,8 @@ const Login = () => {
       if (loginResponse && localStorage.getItem("token")) {
         const token = localStorage.getItem("token");
         setAuthToken(token);
+        const userResponse = await getUserByToken(token);
+        dispatch(setUserInfo(userResponse.data));
         // const userResponse = await getUser();
       }
       console.log(loginResponse);

@@ -40,3 +40,17 @@ export const login = async (loginPayload) => {
     return err;
   }
 };
+
+export const getUserByToken = async (token) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  try {
+    const user = await instance.get("/getUserByToken", { headers });
+    return user;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
