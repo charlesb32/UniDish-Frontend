@@ -53,7 +53,9 @@ const Login = () => {
         const token = localStorage.getItem("token");
         setAuthToken(token);
         const userResponse = await getUserByToken(token);
+        console.log(userResponse.data);
         dispatch(setUserInfo(userResponse.data));
+        navigate("/DiningHalls");
         // const userResponse = await getUser();
       }
       console.log(loginResponse);

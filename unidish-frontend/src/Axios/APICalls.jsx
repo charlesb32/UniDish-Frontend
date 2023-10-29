@@ -43,7 +43,7 @@ export const login = async (loginPayload) => {
 
 export const getUserByToken = async (token) => {
   const headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `${token}`,
   };
   try {
     const user = await instance.get("/getUserByToken", { headers });
