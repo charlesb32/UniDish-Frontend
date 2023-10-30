@@ -54,3 +54,41 @@ export const getUserByToken = async (token) => {
     return err;
   }
 };
+
+export const getDiningHallsWithRestaurants = async () => {
+  try {
+    const response = await instance.get("/getDiningHallsWithRestaurants");
+    // console.log(response.data);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const getRestaurantById = async (restId) => {
+  try {
+    const response = await instance.get("/getRestaurantById", {
+      params: { restId },
+    });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const getMenuItemsForRestaurant = async (restId) => {
+  try {
+    const response = await instance.get("/getMenuItemsForRestaurant", {
+      params: { restId },
+    });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};

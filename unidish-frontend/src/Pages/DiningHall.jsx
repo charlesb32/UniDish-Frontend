@@ -1,7 +1,8 @@
-const DiningHall = () => {
+const DiningHall = ({ selectedRestaurant }) => {
+  console.log(selectedRestaurant);
   return (
     <div>
-      <h2>Dining Hall Reviews Here</h2>
+      <h2>Dining Hall Reviews Here for: </h2>
     </div>
   );
 };
