@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import * as React from "react";
+import { useState } from "react";
 import Logo from "../Assets/Logo.jpg";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../Redux/userActions";
@@ -7,17 +8,23 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { persistStore } from "redux-persist";
 import store from "../Redux/store";
+import EditProfile from "./EditProfile";
 const Topbar = () => {
   // let currUser;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currUser = useSelector((state) => state.user.userInfo);
+  const [openProfile, setOpenProfile] = useState(false);
   const handleLogout = () => {
     localStorage.removeItem("token");
     const persistor = persistStore(store);
     persistor.purge(); // This will purge the persisted state
     dispatch(logout()); // Dispatch the logout action to clear user-related state
     navigate("/login");
+  };
+
+  const handleCloseProfile = () => {
+    setOpenProfile(false);
   };
   return (
     <div className="topbar">
@@ -32,7 +39,7 @@ const Topbar = () => {
         <Button
           className="topbar-button"
           variant="contained"
-          //   onClick={() => navigate("/plans")}
+          onClick={() => setOpenProfile(true)}
         >
           Profile
         </Button>
@@ -44,6 +51,7 @@ const Topbar = () => {
           Logout
         </Button>
       </div>
+      <EditProfile open={openProfile} onClose={handleCloseProfile} />
     </div>
   );
 };

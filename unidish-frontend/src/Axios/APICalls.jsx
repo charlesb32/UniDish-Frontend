@@ -92,3 +92,28 @@ export const getMenuItemsForRestaurant = async (restId) => {
     return err;
   }
 };
+
+export const updateUserInfo = async (userInfo) => {
+  try {
+    const response = await instance.put("/updateUserInfo", { userInfo });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const changePassword = async (passwordPayload, userId) => {
+  try {
+    const response = await instance.put("/updatePassword", {
+      passwordPayload,
+      userId,
+    });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
