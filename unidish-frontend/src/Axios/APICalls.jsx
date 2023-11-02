@@ -117,3 +117,14 @@ export const changePassword = async (passwordPayload, userId) => {
     return err;
   }
 };
+
+export const addRestaurant = async (restData) => {
+  try {
+    const response = await instance.post("/addRestaurant", { restData });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};

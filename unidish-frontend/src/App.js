@@ -8,11 +8,34 @@ import SignUp from "./Pages/Signup";
 import Login from "./Pages/Login";
 import { useSelector } from "react-redux";
 import Restaurant from "./Pages/Restaurant";
+import ManageDiningHalls from "./Pages/DiningManagement";
+import DiningManagement from "./Pages/DiningManagement";
 
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const currUser = useSelector((state) => state.user.userInfo.user.sub);
   const isLoggedIn = useSelector((state) => state.user.userInfo);
 
+  if (isLoggedIn && currUser.type == "university admin") {
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Topbar />
+          <Sidebar />
+          <div className="main-content">
+            <Routes>
+              <Route path="/DiningHalls" element={<DiningHall />} />
+              <Route
+                path="restaurants/:restaurantId"
+                element={<Restaurant />}
+              />
+              <Route path="diningManagement" element={<DiningManagement />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </div>
+    );
+  }
   if (isLoggedIn) {
     return (
       <div className="App">

@@ -1,7 +1,6 @@
-import { Box, Button, Modal, Typography, TextField } from "@mui/material";
-import { useSelector } from "react-redux";
+import { Box, Button, Modal, TextField } from "@mui/material";
 import { useState } from "react";
-import { changePassword, updateUserInfo } from "../Axios/APICalls";
+import { changePassword } from "../Axios/APICalls";
 
 const ChangePassword = ({ open, closeModal, currUser }) => {
   const [passwordInfo, setPasswordInfo] = useState({

@@ -68,7 +68,7 @@
   border: 1px solid #000;
   display: flex; /* Turn on flexbox */
   justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
+  /* align-items: center; Center content vertically */
   height: calc(
     100vh - 90px
   ); /* Take full available height minus topbar and padding */
@@ -199,4 +199,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px; /* Provides space between child elements */
+}
+
+.Manage-Dining-Hall-Card-Header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Manage-Restaurant {
+  display: flex;
+  justify-content: space-between;
 }

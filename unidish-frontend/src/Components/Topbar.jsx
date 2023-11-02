@@ -13,8 +13,9 @@ const Topbar = () => {
   // let currUser;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const currUser = useSelector((state) => state.user.userInfo);
+  const currUser = useSelector((state) => state.user.userInfo.user.sub);
   const [openProfile, setOpenProfile] = useState(false);
+  console.log(currUser);
   const handleLogout = () => {
     localStorage.removeItem("token");
     const persistor = persistStore(store);
@@ -32,10 +33,24 @@ const Topbar = () => {
         <img className="topbar-logo" src={Logo} alt="App Logo" />
         <h3 className="topbar-title">UniDish</h3>
         <h3 className="topbar-welcome">
-          Welcome {currUser ? currUser.user.firstname : ""}
+          Welcome {currUser ? currUser.firstname : ""}
         </h3>
       </div>
       <div className="topbar-buttons">
+        {currUser.type === "university admin" && (
+          <Button
+            className="topbar-button"
+            variant="contained"
+            onClick={() => navigate("diningManagement")}
+          >
+            Manage Dining Halls
+          </Button>
+        )}
+        {currUser.type === "admin" && (
+          <Button className="topbar-button" variant="contained">
+            Create University Admins
+          </Button>
+        )}
         <Button
           className="topbar-button"
           variant="contained"

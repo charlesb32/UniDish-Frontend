@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import { getDiningHallsWithRestaurants } from "../Axios/APICalls";
 import { useNavigate } from "react-router-dom";
-
+import { Button } from "@mui/material";
+import { useSelector } from "react-redux";
 const Sidebar = () => {
   const [data, setData] = useState([]);
-
   const navigate = useNavigate();
-  const fetchDiningHallsAndRestaurants = async () => {
-    try {
-      const res = await getDiningHallsWithRestaurants();
-
-      if (res && res.dining_halls) {
-        // console.log(res.dining_halls);
-        setData(res.dining_halls);
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
 
   useEffect(() => {
+    const fetchDiningHallsAndRestaurants = async () => {
+      try {
+        const res = await getDiningHallsWithRestaurants();
+
+        if (res && res.dining_halls) {
+          setData(res.dining_halls);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
     fetchDiningHallsAndRestaurants();
   }, []);
 
