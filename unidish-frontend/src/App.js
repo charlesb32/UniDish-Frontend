@@ -13,10 +13,11 @@ import DiningManagement from "./Pages/DiningManagement";
 
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const currUser = useSelector((state) => state.user.userInfo.user.sub);
-  const isLoggedIn = useSelector((state) => state.user.userInfo);
 
-  if (isLoggedIn && currUser.type == "university admin") {
+  const isLoggedIn = useSelector((state) => state.user.userInfo);
+  const currUser = isLoggedIn ? isLoggedIn.user.sub : undefined;
+
+  if (isLoggedIn && currUser && currUser.type === "university admin") {
     return (
       <div className="App">
         <BrowserRouter>

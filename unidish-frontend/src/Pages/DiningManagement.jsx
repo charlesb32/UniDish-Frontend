@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { getDiningHallsWithRestaurants } from "../Axios/APICalls";
 import AddRestaurant from "../Components/AddRestaurant";
+import DeleteRestaurant from "../Components/DeleteRestaurant";
+import EditRestaurant from "../Components/EditRestaurant";
 
 const DiningManagement = () => {
   const [data, setData] = useState([]);
@@ -17,6 +19,9 @@ const DiningManagement = () => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const [selectedDiningHall, setSelectedDiningHall] = useState(null);
   const [openAddRestaurantModal, setOpenAddRestaurantModal] = useState(false);
+  const [openDeleteRestaurantModal, setOpenDeleteRestaurantModal] =
+    useState(false);
+  const [openEditRestaurantModal, setOpenEditRestaurantModal] = useState(false);
 
   const handleAddRestaurantClick = (diningHall) => {
     console.log(diningHall);
@@ -28,6 +33,13 @@ const DiningManagement = () => {
     setOpenAddRestaurantModal(false);
   };
 
+  const handleCloseDeleteRestaurant = () => {
+    setOpenDeleteRestaurantModal(false);
+  };
+
+  const handleCloseEditRestaurant = () => {
+    setOpenEditRestaurantModal(false);
+  };
   const handleMenuOpen = (event, restaurant) => {
     setAnchorEl(event.currentTarget);
     setSelectedRestaurant(restaurant);
@@ -35,7 +47,7 @@ const DiningManagement = () => {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    setSelectedRestaurant(null);
+    // setSelectedRestaurant(null);
   };
 
   useEffect(() => {
@@ -104,6 +116,7 @@ const DiningManagement = () => {
         <MenuItem
           onClick={() => {
             console.log("Edit restaurant:", selectedRestaurant);
+            setOpenEditRestaurantModal(true);
             handleMenuClose();
           }}
         >
@@ -112,6 +125,7 @@ const DiningManagement = () => {
         <MenuItem
           onClick={() => {
             console.log("Delete restaurant:", selectedRestaurant);
+            setOpenDeleteRestaurantModal(true);
             handleMenuClose();
           }}
         >
@@ -122,6 +136,16 @@ const DiningManagement = () => {
         open={openAddRestaurantModal}
         onClose={handleCloseAddRestaurant}
         diningHall={selectedDiningHall}
+      />
+      <DeleteRestaurant
+        open={openDeleteRestaurantModal}
+        onClose={handleCloseDeleteRestaurant}
+        restaurant={selectedRestaurant}
+      />
+      <EditRestaurant
+        open={openEditRestaurantModal}
+        onClose={handleCloseEditRestaurant}
+        restaurant={selectedRestaurant}
       />
     </div>
   );
