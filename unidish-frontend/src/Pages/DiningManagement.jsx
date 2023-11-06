@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  TextField,
-  Typography,
-  Card,
-  CardContent,
-  Menu,
-  MenuItem,
-} from "@mui/material";
+import { Button, Card, CardContent, Menu, MenuItem } from "@mui/material";
 import { getDiningHallsWithRestaurants } from "../Axios/APICalls";
 import AddRestaurant from "../Components/AddRestaurant";
 import DeleteRestaurant from "../Components/DeleteRestaurant";
 import EditRestaurant from "../Components/EditRestaurant";
+import AddDiningHall from "../Components/AddDiningHall";
 
 const DiningManagement = () => {
   const [data, setData] = useState([]);
@@ -22,11 +15,16 @@ const DiningManagement = () => {
   const [openDeleteRestaurantModal, setOpenDeleteRestaurantModal] =
     useState(false);
   const [openEditRestaurantModal, setOpenEditRestaurantModal] = useState(false);
+  const [openAddDiningHallModal, setopenAddDiningHallModal] = useState(false);
 
   const handleAddRestaurantClick = (diningHall) => {
     console.log(diningHall);
     setOpenAddRestaurantModal(true);
     setSelectedDiningHall(diningHall.dining_hall);
+  };
+
+  const handleAddDiningHallClick = () => {
+    setopenAddDiningHallModal(true);
   };
 
   const handleCloseAddRestaurant = () => {
@@ -40,6 +38,11 @@ const DiningManagement = () => {
   const handleCloseEditRestaurant = () => {
     setOpenEditRestaurantModal(false);
   };
+
+  const handleCloseAddDiningHall = () => {
+    setopenAddDiningHallModal(false);
+  };
+
   const handleMenuOpen = (event, restaurant) => {
     setAnchorEl(event.currentTarget);
     setSelectedRestaurant(restaurant);
@@ -68,7 +71,9 @@ const DiningManagement = () => {
 
   return (
     <div>
-      <Button variant="contained">Add New Dining Hall</Button>
+      <Button variant="contained" onClick={handleAddDiningHallClick}>
+        Add New Dining Hall
+      </Button>
       <div className="DiningHall-Management-Card">
         {data.length > 0 &&
           data.map((diningHall) => {
@@ -146,6 +151,10 @@ const DiningManagement = () => {
         open={openEditRestaurantModal}
         onClose={handleCloseEditRestaurant}
         restaurant={selectedRestaurant}
+      />
+      <AddDiningHall
+        open={openAddDiningHallModal}
+        onClose={handleCloseAddDiningHall}
       />
     </div>
   );
