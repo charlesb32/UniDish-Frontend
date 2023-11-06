@@ -151,9 +151,31 @@ export const deleteRestaurant = async (restId) => {
   }
 };
 
+export const deleteDiningHall = async (diningHallId) => {
+  try {
+    const response = await instance.delete(`deleteDiningHall/${diningHallId}`);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
 export const editRestaurant = async (restData) => {
   try {
     const response = await instance.put("/editRestaurant", { restData });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const editDiningHall = async (diningHallData) => {
+  try {
+    const response = await instance.put("/editDiningHall", { diningHallData });
     return response.data;
   } catch (err) {
     console.log(err);

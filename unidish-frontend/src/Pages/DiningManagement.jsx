@@ -5,6 +5,9 @@ import AddRestaurant from "../Components/AddRestaurant";
 import DeleteRestaurant from "../Components/DeleteRestaurant";
 import EditRestaurant from "../Components/EditRestaurant";
 import AddDiningHall from "../Components/AddDiningHall";
+import EditDiningHall from "../Components/EditDiningHall";
+import DeleteDiningHall from "../Components/DeleteDiningHall";
+import EditMenu from "../Components/EditMenu";
 
 const DiningManagement = () => {
   const [data, setData] = useState([]);
@@ -15,7 +18,11 @@ const DiningManagement = () => {
   const [openDeleteRestaurantModal, setOpenDeleteRestaurantModal] =
     useState(false);
   const [openEditRestaurantModal, setOpenEditRestaurantModal] = useState(false);
-  const [openAddDiningHallModal, setopenAddDiningHallModal] = useState(false);
+  const [openAddDiningHallModal, setOpenAddDiningHallModal] = useState(false);
+  const [openEditDiningHallModal, setOpenEditDiningHallModal] = useState(false);
+  const [openDeleteDiningHallModal, setOpenDeleteDiningHallModal] =
+    useState(false);
+  const [openEditMenuModal, setOpenEditMenuModal] = useState(false);
 
   const handleAddRestaurantClick = (diningHall) => {
     console.log(diningHall);
@@ -24,9 +31,13 @@ const DiningManagement = () => {
   };
 
   const handleAddDiningHallClick = () => {
-    setopenAddDiningHallModal(true);
+    setOpenAddDiningHallModal(true);
   };
 
+  const handleEditDiningHallClick = (diningHall) => {
+    setSelectedDiningHall(diningHall.dining_hall);
+    setOpenEditDiningHallModal(true);
+  };
   const handleCloseAddRestaurant = () => {
     setOpenAddRestaurantModal(false);
   };
@@ -35,12 +46,29 @@ const DiningManagement = () => {
     setOpenDeleteRestaurantModal(false);
   };
 
+  const handleCloseDeleteDiningHall = () => {
+    setOpenDeleteDiningHallModal(false);
+  };
+
   const handleCloseEditRestaurant = () => {
     setOpenEditRestaurantModal(false);
   };
 
   const handleCloseAddDiningHall = () => {
-    setopenAddDiningHallModal(false);
+    setOpenAddDiningHallModal(false);
+  };
+
+  const handleCloseEditDiningHall = () => {
+    setOpenEditDiningHallModal(false);
+  };
+
+  const handleDeleteDiningHall = (diningHall) => {
+    setSelectedDiningHall(diningHall);
+    setOpenDeleteDiningHallModal(true);
+  };
+
+  const handleCloseEditMenu = () => {
+    setOpenEditMenuModal(false);
   };
 
   const handleMenuOpen = (event, restaurant) => {
@@ -87,9 +115,26 @@ const DiningManagement = () => {
                       <Button
                         variant="contained"
                         color="secondary"
+                        size="small"
                         onClick={() => handleAddRestaurantClick(diningHall)}
                       >
                         add restaurant
+                      </Button>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleEditDiningHallClick(diningHall)}
+                      >
+                        Edit Dining Hall
+                      </Button>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteDiningHall(diningHall)}
+                      >
+                        Delete Dining Hall
                       </Button>
                     </div>
                     <ul>
@@ -125,7 +170,15 @@ const DiningManagement = () => {
             handleMenuClose();
           }}
         >
-          Edit
+          Edit Restaurant Info
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            setOpenEditMenuModal(true);
+            handleMenuClose();
+          }}
+        >
+          Edit Menu
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -134,7 +187,7 @@ const DiningManagement = () => {
             handleMenuClose();
           }}
         >
-          Delete
+          Delete Restaurant
         </MenuItem>
       </Menu>
       <AddRestaurant
@@ -142,19 +195,34 @@ const DiningManagement = () => {
         onClose={handleCloseAddRestaurant}
         diningHall={selectedDiningHall}
       />
-      <DeleteRestaurant
-        open={openDeleteRestaurantModal}
-        onClose={handleCloseDeleteRestaurant}
-        restaurant={selectedRestaurant}
-      />
       <EditRestaurant
         open={openEditRestaurantModal}
         onClose={handleCloseEditRestaurant}
         restaurant={selectedRestaurant}
       />
+      <DeleteRestaurant
+        open={openDeleteRestaurantModal}
+        onClose={handleCloseDeleteRestaurant}
+        restaurant={selectedRestaurant}
+      />
       <AddDiningHall
         open={openAddDiningHallModal}
         onClose={handleCloseAddDiningHall}
+      />
+      <EditDiningHall
+        open={openEditDiningHallModal}
+        onClose={handleCloseEditDiningHall}
+        diningHall={selectedDiningHall}
+      />
+      <DeleteDiningHall
+        open={openDeleteDiningHallModal}
+        onClose={handleCloseDeleteDiningHall}
+        diningHall={selectedDiningHall}
+      />
+      <EditMenu
+        open={openEditMenuModal}
+        onClose={handleCloseEditMenu}
+        restaurant={selectedRestaurant}
       />
     </div>
   );
