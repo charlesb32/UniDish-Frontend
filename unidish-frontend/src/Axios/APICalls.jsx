@@ -183,3 +183,25 @@ export const editDiningHall = async (diningHallData) => {
     return err;
   }
 };
+
+export const editMenuItem = async (menuItem) => {
+  try {
+    const response = await instance.put("/editMenuItem", { menuItem });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const addMenuItem = async (menuItem) => {
+  try {
+    const response = await instance.post("/addMenuItem", { menuItem });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
