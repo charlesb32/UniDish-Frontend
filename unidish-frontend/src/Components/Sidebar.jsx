@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { getDiningHallsWithRestaurants } from "../Axios/APICalls";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 const Sidebar = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const diningUpdateCount = useSelector(
+    (state) => state.diningUpdateFlag.updateCounter
+  );
 
   useEffect(() => {
+    // console.log("REDUX WORKED");
     const fetchDiningHallsAndRestaurants = async () => {
       try {
         const res = await getDiningHallsWithRestaurants();
@@ -21,7 +24,7 @@ const Sidebar = () => {
     };
 
     fetchDiningHallsAndRestaurants();
-  }, []);
+  }, [diningUpdateCount]);
 
   const handleRestaurantClick = (rest) => {
     // console.log("CLICKED RESTAURANT: ", rest);

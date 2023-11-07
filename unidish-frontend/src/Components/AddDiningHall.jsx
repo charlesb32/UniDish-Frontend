@@ -1,8 +1,11 @@
 import { Box, Button, Modal, TextField } from "@mui/material";
 import { useState } from "react";
 import { addDiningHall } from "../Axios/APICalls";
-
+import { incrementUpdateCounter } from "../Redux/diningUpdateActions";
+import { useDispatch } from "react-redux";
 const AddDiningHall = ({ open, onClose }) => {
+  const dispatch = useDispatch();
+
   const [diningHallData, setDiningHallData] = useState({
     name: "",
     description: "",
@@ -29,6 +32,10 @@ const AddDiningHall = ({ open, onClose }) => {
   const handleSubmit = async () => {
     console.log(diningHallData);
     const response = await addDiningHall(diningHallData);
+    if (response.message === "Dining Hall Added successfully") {
+      console.log("HERE");
+      dispatch(incrementUpdateCounter());
+    }
     alert(response.message);
     handleClose();
   };

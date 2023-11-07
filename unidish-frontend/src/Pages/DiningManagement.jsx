@@ -8,8 +8,12 @@ import AddDiningHall from "../Components/AddDiningHall";
 import EditDiningHall from "../Components/EditDiningHall";
 import DeleteDiningHall from "../Components/DeleteDiningHall";
 import EditMenu from "../Components/EditMenu";
+import { useSelector } from "react-redux";
 
 const DiningManagement = () => {
+  const diningUpdateCount = useSelector(
+    (state) => state.diningUpdateFlag.updateCounter
+  );
   const [data, setData] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
@@ -95,7 +99,7 @@ const DiningManagement = () => {
     };
 
     fetchDiningHallsAndRestaurants();
-  }, []);
+  }, [diningUpdateCount]);
 
   return (
     <div>

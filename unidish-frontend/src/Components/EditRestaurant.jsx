@@ -1,9 +1,12 @@
 import { Box, Modal, TextField, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { editRestaurant } from "../Axios/APICalls";
+import { useDispatch } from "react-redux";
+import { incrementUpdateCounter } from "../Redux/diningUpdateActions";
 
 const EditRestaurant = ({ open, onClose, restaurant }) => {
   //   console.log(restaurant);
+  const dispatch = useDispatch();
   const [restData, setRestData] = useState({
     name: "",
     description: "",
@@ -47,6 +50,7 @@ const EditRestaurant = ({ open, onClose, restaurant }) => {
   const handleSubmit = async () => {
     console.log(restData);
     const response = await editRestaurant(restData);
+    dispatch(incrementUpdateCounter());
     alert(response.message);
     handleClose();
   };

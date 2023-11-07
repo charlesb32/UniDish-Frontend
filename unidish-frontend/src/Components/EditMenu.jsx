@@ -16,8 +16,15 @@ import {
   editMenuItem,
   getMenuItemsForRestaurant,
 } from "../Axios/APICalls";
+import { useDispatch } from "react-redux";
+import { incrementUpdateCounter } from "../Redux/diningUpdateActions";
+import { useSelector } from "react-redux";
 
 const EditMenu = ({ open, onClose, restaurant }) => {
+  const dispatch = useDispatch();
+  const diningUpdateCount = useSelector(
+    (state) => state.diningUpdateFlag.updateCounter
+  );
   console.log(restaurant);
   const [menuItems, setMenuItems] = useState([
     { name: "", price: "", calories: "", description: "" },
@@ -61,7 +68,7 @@ const EditMenu = ({ open, onClose, restaurant }) => {
       }
     };
     fetchMenuItems();
-  }, [restaurant]);
+  }, [restaurant, diningUpdateCount]);
 
   const handleInputChange = (e, itemIndex, attributeIndex) => {
     console.log(menuItems);
@@ -83,12 +90,23 @@ const EditMenu = ({ open, onClose, restaurant }) => {
   const handleUpdate = async (menuItem) => {
     console.log(menuItem);
     // const response = await editMenuItem(menuItem);
-    editMenuItem(menuItem);
+    const response = await editMenuItem(menuItem);
+    if (response.success) {
+      dispatch(incrementUpdateCounter());
+      setNewMenuItem({
+        name: "",
+        price: "",
+        calories: "",
+        description: "",
+        restaurantId: restaurant.id,
+      });
+    }
   };
 
   const handleAdd = async (menuItem) => {
     console.log(menuItem);
-    addMenuItem(newMenuItem);
+    await addMenuItem(newMenuItem);
+    dispatch(incrementUpdateCounter());
   };
   return (
     <Modal open={open} onClose={onClose}>
@@ -150,6 +168,7 @@ const EditMenu = ({ open, onClose, restaurant }) => {
                     >
                       Update
                     </Button>
+                    {/* <Button>Delete</Button> */}
                   </TableCell>
                 </TableRow>
               );
@@ -158,7 +177,7 @@ const EditMenu = ({ open, onClose, restaurant }) => {
               <TableCell>
                 <TextField
                   name="name"
-                  //   value={menuItems.name}
+                  value={newMenuItem.name}
                   onChange={(e) => handleInputChange(e, -1)}
                   placeholder="Name"
                   fullWidth
@@ -167,7 +186,7 @@ const EditMenu = ({ open, onClose, restaurant }) => {
               <TableCell>
                 <TextField
                   name="price"
-                  //   value={menuItems.price}
+                  value={newMenuItem.price}
                   onChange={(e) => handleInputChange(e, -1)}
                   placeholder="Price"
                   fullWidth
@@ -176,7 +195,7 @@ const EditMenu = ({ open, onClose, restaurant }) => {
               <TableCell>
                 <TextField
                   name="calories"
-                  //   value={menuItems.calories}
+                  value={newMenuItem.calories}
                   onChange={(e) => handleInputChange(e, -1)}
                   placeholder="Calories"
                   fullWidth
@@ -185,7 +204,7 @@ const EditMenu = ({ open, onClose, restaurant }) => {
               <TableCell>
                 <TextField
                   name="description"
-                  //   value={menuItems.description}
+                  value={newMenuItem.description}
                   onChange={(e) => handleInputChange(e, -1)}
                   placeholder="Description"
                   fullWidth

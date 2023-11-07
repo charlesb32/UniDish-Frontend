@@ -1,8 +1,11 @@
 import { Box, Button, Modal, Typography, TextField } from "@mui/material";
 import { useState } from "react";
 import { addRestaurant } from "../Axios/APICalls";
+import { useDispatch } from "react-redux";
+import { incrementUpdateCounter } from "../Redux/diningUpdateActions";
 
 const AddRestaurant = ({ open, onClose, diningHall }) => {
+  const dispatch = useDispatch();
   console.log(diningHall);
   const [restData, setRestData] = useState({
     name: "",
@@ -34,6 +37,9 @@ const AddRestaurant = ({ open, onClose, diningHall }) => {
     restData.diningHallId = diningHall[0];
     console.log(restData);
     const response = await addRestaurant(restData);
+    if (response.message === "Restaurant Added successfully") {
+      dispatch(incrementUpdateCounter());
+    }
     alert(response.message);
     handleClose();
   };

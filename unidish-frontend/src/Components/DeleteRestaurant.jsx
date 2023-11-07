@@ -1,11 +1,14 @@
 import { Modal, Box, Typography, Button } from "@mui/material";
 import { deleteRestaurant } from "../Axios/APICalls";
+import { useDispatch } from "react-redux";
+import { incrementUpdateCounter } from "../Redux/diningUpdateActions";
 
 const DeleteRestaurant = ({ open, onClose, restaurant }) => {
   //   console.log(restaurant);
-
+  const dispatch = useDispatch();
   const handleSubmit = async () => {
     await deleteRestaurant(restaurant.id);
+    dispatch(incrementUpdateCounter());
     onClose();
   };
   return (
