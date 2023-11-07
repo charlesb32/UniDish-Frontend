@@ -9,12 +9,15 @@ import { useSelector } from "react-redux";
 import { persistStore } from "redux-persist";
 import store from "../Redux/store";
 import EditProfile from "./EditProfile";
+import CreateUniversityAdmin from "./CreateUniveristyAdmin";
 const Topbar = () => {
   // let currUser;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currUser = useSelector((state) => state.user.userInfo.user.sub);
   const [openProfile, setOpenProfile] = useState(false);
+  const [openUniversityAdminCreateModal, setOpenUniversityAdminCreateModal] =
+    useState(false);
   console.log(currUser);
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -22,6 +25,10 @@ const Topbar = () => {
     persistor.purge(); // This will purge the persisted state
     dispatch(logout()); // Dispatch the logout action to clear user-related state
     navigate("/login");
+  };
+
+  const handleCloseUniversityAdminCreateModal = () => {
+    setOpenUniversityAdminCreateModal(false);
   };
 
   const handleCloseProfile = () => {
@@ -47,7 +54,11 @@ const Topbar = () => {
           </Button>
         )}
         {currUser.type === "admin" && (
-          <Button className="topbar-button" variant="contained">
+          <Button
+            className="topbar-button"
+            variant="contained"
+            onClick={() => setOpenUniversityAdminCreateModal(true)}
+          >
             Create University Admins
           </Button>
         )}
@@ -67,6 +78,10 @@ const Topbar = () => {
         </Button>
       </div>
       <EditProfile open={openProfile} onClose={handleCloseProfile} />
+      <CreateUniversityAdmin
+        open={openUniversityAdminCreateModal}
+        onClose={handleCloseUniversityAdminCreateModal}
+      />
     </div>
   );
 };

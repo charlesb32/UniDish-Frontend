@@ -32,10 +32,7 @@ const AddDiningHall = ({ open, onClose }) => {
   const handleSubmit = async () => {
     console.log(diningHallData);
     const response = await addDiningHall(diningHallData);
-    if (response.message === "Dining Hall Added successfully") {
-      console.log("HERE");
-      dispatch(incrementUpdateCounter());
-    }
+    dispatch(incrementUpdateCounter());
     alert(response.message);
     handleClose();
   };

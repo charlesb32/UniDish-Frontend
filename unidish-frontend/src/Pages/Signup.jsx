@@ -13,6 +13,7 @@ const SignUp = () => {
     username: "",
     password: "",
     confirmPassword: "",
+    type: "user",
   });
 
   const handleChange = (e) => {

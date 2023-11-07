@@ -13,6 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import {
   addMenuItem,
+  deleteMenuItem,
   editMenuItem,
   getMenuItemsForRestaurant,
 } from "../Axios/APICalls";
@@ -25,7 +26,7 @@ const EditMenu = ({ open, onClose, restaurant }) => {
   const diningUpdateCount = useSelector(
     (state) => state.diningUpdateFlag.updateCounter
   );
-  console.log(restaurant);
+  // console.log(restaurant);
   const [menuItems, setMenuItems] = useState([
     { name: "", price: "", calories: "", description: "" },
   ]);
@@ -93,14 +94,20 @@ const EditMenu = ({ open, onClose, restaurant }) => {
     const response = await editMenuItem(menuItem);
     if (response.success) {
       dispatch(incrementUpdateCounter());
-      setNewMenuItem({
-        name: "",
-        price: "",
-        calories: "",
-        description: "",
-        restaurantId: restaurant.id,
-      });
+      // setNewMenuItem({
+      //   name: "",
+      //   price: "",
+      //   calories: "",
+      //   description: "",
+      //   restaurantId: restaurant.id,
+      // });
     }
+  };
+
+  const handleDelete = async (menuItem) => {
+    console.log(menuItem);
+    await deleteMenuItem(menuItem.id);
+    dispatch(incrementUpdateCounter());
   };
 
   const handleAdd = async (menuItem) => {
@@ -108,6 +115,7 @@ const EditMenu = ({ open, onClose, restaurant }) => {
     await addMenuItem(newMenuItem);
     dispatch(incrementUpdateCounter());
   };
+
   return (
     <Modal open={open} onClose={onClose}>
       <Box className="Edit-Profile-Box">
@@ -126,7 +134,7 @@ const EditMenu = ({ open, onClose, restaurant }) => {
           </TableHead>
           <TableBody>
             {menuItems.map((item, index) => {
-              console.log(item);
+              // console.log(item);
               return (
                 <TableRow key={item.id}>
                   <TableCell>
@@ -161,14 +169,24 @@ const EditMenu = ({ open, onClose, restaurant }) => {
                       fullWidth
                     />
                   </TableCell>
-                  <TableCell>
+                  <TableCell align="center">
                     <Button
+                      size="small"
                       variant="contained"
+                      style={{ marginBottom: "4px", width: "80px" }}
                       onClick={() => handleUpdate(item)}
                     >
                       Update
                     </Button>
-                    {/* <Button>Delete</Button> */}
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="secondary"
+                      style={{ marginTop: "4px", width: "80px" }}
+                      onClick={() => handleDelete(item)}
+                    >
+                      Delete
+                    </Button>
                   </TableCell>
                 </TableRow>
               );
@@ -210,11 +228,13 @@ const EditMenu = ({ open, onClose, restaurant }) => {
                   fullWidth
                 />
               </TableCell>
-              <TableCell>
+              <TableCell align="center">
                 <Button
                   variant="contained"
-                  color="secondary"
+                  color="success"
+                  size="small"
                   onClick={() => handleAdd(newMenuItem)}
+                  style={{ width: "80px" }}
                 >
                   Add
                 </Button>
