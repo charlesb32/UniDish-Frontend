@@ -34,6 +34,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-content">
+        {/* <h2>Dining Halls</h2> */}
         {data.length > 0 &&
           data.map((diningHall) => {
             // console.log(diningHall.dining_hall[1]);

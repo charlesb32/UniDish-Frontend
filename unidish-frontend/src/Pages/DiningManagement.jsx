@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, CardContent, Menu, MenuItem } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  Menu,
+  MenuItem,
+  Grid,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import { getDiningHallsWithRestaurants } from "../Axios/APICalls";
 import AddRestaurant from "../Components/AddRestaurant";
 import DeleteRestaurant from "../Components/DeleteRestaurant";
@@ -9,6 +18,7 @@ import EditDiningHall from "../Components/EditDiningHall";
 import DeleteDiningHall from "../Components/DeleteDiningHall";
 import EditMenu from "../Components/EditMenu";
 import { useSelector } from "react-redux";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const DiningManagement = () => {
   const diningUpdateCount = useSelector(
@@ -102,20 +112,23 @@ const DiningManagement = () => {
   }, [diningUpdateCount]);
 
   return (
-    <div>
-      <Button variant="contained" onClick={handleAddDiningHallClick}>
-        Add New Dining Hall
-      </Button>
-      <div className="DiningHall-Management-Card">
+    <div className="DiningHall-Management-Container">
+      <div className="add-dining-hall-button-container">
+        <Button variant="contained" onClick={handleAddDiningHallClick}>
+          Add New Dining Hall
+        </Button>
+      </div>
+      <Grid container spacing={2} className="DiningHall-Management-Card">
         {data.length > 0 &&
-          data.map((diningHall) => {
-            // console.log(diningHall.dining_hall[1]);
-            return (
-              <Card sx={{ minWidth: 500 }}>
+          data.map((diningHall) => (
+            <Grid item xs={12} sm={6} md={4} key={diningHall.id}>
+              <Card>
                 <CardContent>
-                  <div key={diningHall.id}>
-                    <div className="Manage-Dining-Hall-Card-Header">
-                      <h3>{diningHall.dining_hall[1]}</h3>
+                  <div className="Manage-Dining-Hall-Card-Header">
+                    <Typography variant="h6">
+                      {diningHall.dining_hall[1]}
+                    </Typography>
+                    <div className="Button-Group">
                       <Button
                         variant="contained"
                         color="secondary"
@@ -130,7 +143,7 @@ const DiningManagement = () => {
                         color="secondary"
                         onClick={() => handleEditDiningHallClick(diningHall)}
                       >
-                        Edit Dining Hall
+                        Edit
                       </Button>
                       <Button
                         variant="contained"
@@ -138,30 +151,28 @@ const DiningManagement = () => {
                         color="secondary"
                         onClick={() => handleDeleteDiningHall(diningHall)}
                       >
-                        Delete Dining Hall
+                        Delete
                       </Button>
                     </div>
-                    <ul>
-                      {diningHall.restaurants.map((restaurant) => (
-                        <div className="Manage-Restaurant">
-                          <li key={restaurant.id} style={{ cursor: "pointer" }}>
-                            {restaurant.name}
-                          </li>
-                          <Button
-                            size="small"
-                            onClick={(e) => handleMenuOpen(e, restaurant)}
-                          >
-                            •••
-                          </Button>
-                        </div>
-                      ))}
-                    </ul>
                   </div>
+                  <ul>
+                    {diningHall.restaurants.map((restaurant) => (
+                      <div className="Manage-Restaurant" key={restaurant.id}>
+                        <li>{restaurant.name}</li>
+                        <IconButton
+                          size="small"
+                          onClick={(e) => handleMenuOpen(e, restaurant)}
+                        >
+                          <MoreVertIcon />
+                        </IconButton>
+                      </div>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
-            );
-          })}
-      </div>
+            </Grid>
+          ))}
+      </Grid>
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}

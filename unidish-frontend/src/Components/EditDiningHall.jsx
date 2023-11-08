@@ -34,11 +34,11 @@ const EditDiningHall = ({ open, onClose, diningHall }) => {
 
   const handleClose = () => {
     onClose();
-    setDiningHallData({
-      name: "",
-      description: "",
-      address: "",
-    });
+    // setDiningHallData({
+    //   name: "",
+    //   description: "",
+    //   address: "",
+    // });
   };
 
   const handleSubmit = async () => {

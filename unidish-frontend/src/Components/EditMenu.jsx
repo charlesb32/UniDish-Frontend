@@ -118,7 +118,7 @@ const EditMenu = ({ open, onClose, restaurant }) => {
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Box className="Edit-Profile-Box">
+      <Box className="Edit-Menu-Box">
         <Typography id="modal-modal-title" variant="h6" component="h2" mb={2}>
           Menu at {restaurant ? restaurant.name : ""}
         </Typography>
@@ -170,23 +170,23 @@ const EditMenu = ({ open, onClose, restaurant }) => {
                     />
                   </TableCell>
                   <TableCell align="center">
-                    <Button
-                      size="small"
-                      variant="contained"
-                      style={{ marginBottom: "4px", width: "80px" }}
-                      onClick={() => handleUpdate(item)}
-                    >
-                      Update
-                    </Button>
-                    <Button
-                      size="small"
-                      variant="contained"
-                      color="secondary"
-                      style={{ marginTop: "4px", width: "80px" }}
-                      onClick={() => handleDelete(item)}
-                    >
-                      Delete
-                    </Button>
+                    <div className="Button-Group">
+                      <Button
+                        size="small"
+                        variant="contained"
+                        onClick={() => handleUpdate(item)}
+                      >
+                        Update
+                      </Button>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => handleDelete(item)}
+                      >
+                        Delete
+                      </Button>
+                    </div>
                   </TableCell>
                 </TableRow>
               );
