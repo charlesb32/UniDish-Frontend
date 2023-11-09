@@ -18,7 +18,7 @@ const Topbar = () => {
   const [openProfile, setOpenProfile] = useState(false);
   const [openUniversityAdminCreateModal, setOpenUniversityAdminCreateModal] =
     useState(false);
-  console.log(currUser);
+  // console.log(currUser);
   const handleLogout = () => {
     localStorage.removeItem("token");
     const persistor = persistStore(store);

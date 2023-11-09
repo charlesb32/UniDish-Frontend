@@ -137,9 +137,9 @@
 .main-content {
   margin-left: 13%; /* starting after the sidebar */
   /* padding: 20px; */
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   display: flex; /* Turn on flexbox */
-  justify-content: center; /* Center content horizontally */
+  /* justify-content: center; Center content horizontally */
   overflow-y: auto; /* Enable vertical scroll */
   /* align-items: center; Center content vertically */
   height: calc(
@@ -343,4 +343,29 @@
   justify-content: flex-end; /* Aligns the button to the right */
   padding-right: 16px; /* Adds some space from the right edge of the screen */
   margin-bottom: 16px; /* Optional: Adds some space below the button */
+}
+
+.Restaurant-Content {
+  display: flex;
+  flex-direction: column; /* This will stack children vertically */
+  width: 100%;
+  margin-left: 16px;
+  margin-right: 16px;
+  /* border: 1px solid #000; */
+}
+
+.Restaurant-Card-Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ensure the container spans the full width */
+  height: 10%;
+  /* border: 1px solid #000; */
+}
+
+.Restaurant-Card-Header .button-group {
+  display: flex;
+  gap: 8px; /* This is a modern way to add space between buttons */
+  justify-content: flex-end;
+  /* padding-right: 16px; */
 }

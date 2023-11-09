@@ -216,3 +216,64 @@ export const addMenuItem = async (menuItem) => {
     return err;
   }
 };
+
+export const getReviews = async (restId, currUserId) => {
+  try {
+    const response = await instance.get("/getReviews", {
+      params: { restId: restId, currUserId: currUserId },
+    });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const getUserById = async (userId) => {
+  try {
+    const response = await instance.get("/getUserById", {
+      params: { userId },
+    });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const likeReview = async (likeInfo) => {
+  try {
+    const response = await instance.post("/likeReview", { likeInfo });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const dislikeReview = async (dislikeInfo) => {
+  try {
+    const response = await instance.post("/dislikeReview", { dislikeInfo });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const getOverallRestaurantRating = async (restId) => {
+  try {
+    const response = await instance.get("/getOverallRestaurantRating", {
+      params: { restId },
+    });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};

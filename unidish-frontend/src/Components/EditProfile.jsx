@@ -14,7 +14,7 @@ const EditProfile = ({ open, onClose }) => {
     profile_description: currUser.profile_description,
     type: currUser.type,
   });
-  console.log(currUser);
+  // console.log(currUser);
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
 
   const handlePasswordModalClose = () => {
@@ -67,7 +67,7 @@ const EditProfile = ({ open, onClose }) => {
               Save
             </Button>
             <Button
-              variant="outlined"
+              variant="contained"
               color="secondary"
               style={{ marginLeft: "10px" }}
               onClick={() => setPasswordModalOpen(true)}

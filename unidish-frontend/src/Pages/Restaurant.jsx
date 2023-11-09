@@ -4,20 +4,22 @@ import {
   getMenuItemsForRestaurant,
   getRestaurantById,
 } from "../Axios/APICalls";
+import RestaurantHeader from "../Components/RestaurantHeader";
+import RestaurantReviews from "../Components/RestaurantReviews";
 
 const Restaurant = () => {
   const { restaurantId } = useParams();
   const [restaurant, setRestaurant] = useState();
-  const [menuItems, setMenuItems] = useState();
+  // const [menuItems, setMenuItems] = useState();
 
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
         const rest = await getRestaurantById(restaurantId);
-        const menu = await getMenuItemsForRestaurant(restaurantId);
-        console.log(menu);
+        // const menu = await getMenuItemsForRestaurant(restaurantId);
+        // console.log(menu);
         setRestaurant(rest);
-        setMenuItems(menu);
+        // setMenuItems(menu);
       } catch (error) {
         console.error("Failed to fetch restaurant:", error);
       }
@@ -26,10 +28,13 @@ const Restaurant = () => {
     fetchRestaurant();
   }, [restaurantId]); // Adding restaurantId as a dependency
   return (
-    <div>
-      {restaurant && menuItems && (
-        <div>Restaurant: {restaurant.restaurant[1]}</div>
-      )}
+    <div className="Restaurant-Content">
+      <div className="Restaurant-Card-Header">
+        {restaurant && <RestaurantHeader restaurant={restaurant.restaurant} />}
+      </div>
+      <div className="Restaurant-Reviews">
+        {restaurant && <RestaurantReviews restaurant={restaurant.restaurant} />}
+      </div>
     </div>
   );
 };

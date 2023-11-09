@@ -9,6 +9,8 @@ const initialState = {
 // The reducer listens for actions concerning restaurant updates
 const diningUpdateReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "LOGOUT":
+      return initialState; // Reset user state when logging out
     case INCREMENT_UPDATE_COUNTER:
       // Increment the counter when the relevant action is dispatched
       return {
