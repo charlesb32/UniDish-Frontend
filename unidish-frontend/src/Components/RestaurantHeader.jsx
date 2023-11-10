@@ -1,9 +1,16 @@
 import { Button, Typography, Rating } from "@mui/material";
 import { useState, useEffect } from "react";
 import { getOverallRestaurantRating } from "../Axios/APICalls";
+import WriteReview from "./WriteReview";
+import { useSelector } from "react-redux";
 
 const RestaurantHeader = ({ restaurant }) => {
   const [overallRating, setOverallRating] = useState();
+  const [openWriteReviewModal, setOpenWriteReviewModal] = useState(false);
+  const reviewUpdateCount = useSelector(
+    (state) => state.diningUpdateFlag.updateCounter
+  );
+
   useEffect(() => {
     const fetchOverallRating = async () => {
       try {
@@ -15,7 +22,12 @@ const RestaurantHeader = ({ restaurant }) => {
       }
     };
     fetchOverallRating();
-  }, [restaurant]);
+  }, [restaurant, reviewUpdateCount]);
+
+  const handleCloseWriteReviewModal = () => {
+    setOpenWriteReviewModal(false);
+  };
+
   return (
     <div className="Restaurant-Card-Header">
       <div>
@@ -36,8 +48,18 @@ const RestaurantHeader = ({ restaurant }) => {
       </div>
       <div className="button-group">
         <Button variant="contained">Menu</Button>
-        <Button variant="contained">Write Review</Button>
+        <Button
+          variant="contained"
+          onClick={() => setOpenWriteReviewModal(true)}
+        >
+          Write Review
+        </Button>
       </div>
+      <WriteReview
+        open={openWriteReviewModal}
+        onClose={handleCloseWriteReviewModal}
+        restaurant={restaurant}
+      />
     </div>
   );
 };

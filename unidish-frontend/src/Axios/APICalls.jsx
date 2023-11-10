@@ -277,3 +277,14 @@ export const getOverallRestaurantRating = async (restId) => {
     return err;
   }
 };
+
+export const createReview = async (reviewInfo) => {
+  try {
+    const response = await instance.post("/createReview", { reviewInfo });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
