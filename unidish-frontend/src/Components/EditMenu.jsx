@@ -21,12 +21,12 @@ import { useDispatch } from "react-redux";
 import { incrementUpdateCounter } from "../Redux/diningUpdateActions";
 import { useSelector } from "react-redux";
 
-const EditMenu = ({ open, onClose, restaurant }) => {
+const EditMenu = ({ open, onClose, restaurant, editMode }) => {
   const dispatch = useDispatch();
   const diningUpdateCount = useSelector(
     (state) => state.diningUpdateFlag.updateCounter
   );
-  // console.log(restaurant);
+  console.log(restaurant);
   const [menuItems, setMenuItems] = useState([
     { name: "", price: "", calories: "", description: "" },
   ]);
@@ -129,7 +129,7 @@ const EditMenu = ({ open, onClose, restaurant }) => {
               <TableCell>Price</TableCell>
               <TableCell>Calories</TableCell>
               <TableCell>Description</TableCell>
-              <TableCell>Actions</TableCell>
+              {editMode !== "view" && <TableCell>Actions</TableCell>}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -143,6 +143,10 @@ const EditMenu = ({ open, onClose, restaurant }) => {
                       value={item.name}
                       onChange={(e) => handleInputChange(e, index, 1)}
                       fullWidth
+                      InputProps={{
+                        style: { color: "black" }, // Inline style for text color
+                        readOnly: editMode === "view",
+                      }}
                     />
                   </TableCell>
                   <TableCell>
@@ -151,6 +155,10 @@ const EditMenu = ({ open, onClose, restaurant }) => {
                       value={item.price}
                       onChange={(e) => handleInputChange(e, index, 3)}
                       fullWidth
+                      InputProps={{
+                        style: { color: "black" }, // Inline style for text color
+                        readOnly: editMode === "view",
+                      }}
                     />
                   </TableCell>
                   <TableCell>
@@ -159,6 +167,10 @@ const EditMenu = ({ open, onClose, restaurant }) => {
                       value={item.calories}
                       onChange={(e) => handleInputChange(e, index, 2)}
                       fullWidth
+                      InputProps={{
+                        style: { color: "black" }, // Inline style for text color
+                        readOnly: editMode === "view",
+                      }}
                     />
                   </TableCell>
                   <TableCell>
@@ -167,79 +179,87 @@ const EditMenu = ({ open, onClose, restaurant }) => {
                       value={item.description}
                       onChange={(e) => handleInputChange(e, index, 4)}
                       fullWidth
+                      InputProps={{
+                        style: { color: "black" }, // Inline style for text color
+                        readOnly: editMode === "view",
+                      }}
                     />
                   </TableCell>
-                  <TableCell align="center">
-                    <div className="Button-Group">
-                      <Button
-                        size="small"
-                        variant="contained"
-                        onClick={() => handleUpdate(item)}
-                      >
-                        Update
-                      </Button>
-                      <Button
-                        size="small"
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => handleDelete(item)}
-                      >
-                        Delete
-                      </Button>
-                    </div>
-                  </TableCell>
+                  {editMode !== "view" && (
+                    <TableCell align="center">
+                      <div className="Button-Group">
+                        <Button
+                          size="small"
+                          variant="contained"
+                          onClick={() => handleUpdate(item)}
+                        >
+                          Update
+                        </Button>
+                        <Button
+                          size="small"
+                          variant="contained"
+                          color="secondary"
+                          onClick={() => handleDelete(item)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    </TableCell>
+                  )}
                 </TableRow>
               );
             })}
-            <TableRow>
-              <TableCell>
-                <TextField
-                  name="name"
-                  value={newMenuItem.name}
-                  onChange={(e) => handleInputChange(e, -1)}
-                  placeholder="Name"
-                  fullWidth
-                />
-              </TableCell>
-              <TableCell>
-                <TextField
-                  name="price"
-                  value={newMenuItem.price}
-                  onChange={(e) => handleInputChange(e, -1)}
-                  placeholder="Price"
-                  fullWidth
-                />
-              </TableCell>
-              <TableCell>
-                <TextField
-                  name="calories"
-                  value={newMenuItem.calories}
-                  onChange={(e) => handleInputChange(e, -1)}
-                  placeholder="Calories"
-                  fullWidth
-                />
-              </TableCell>
-              <TableCell>
-                <TextField
-                  name="description"
-                  value={newMenuItem.description}
-                  onChange={(e) => handleInputChange(e, -1)}
-                  placeholder="Description"
-                  fullWidth
-                />
-              </TableCell>
-              <TableCell align="center">
-                <Button
-                  variant="contained"
-                  color="success"
-                  size="small"
-                  onClick={() => handleAdd(newMenuItem)}
-                  style={{ width: "80px" }}
-                >
-                  Add
-                </Button>
-              </TableCell>
-            </TableRow>
+            {editMode !== "view" && (
+              <TableRow>
+                <TableCell>
+                  <TextField
+                    name="name"
+                    value={newMenuItem.name}
+                    onChange={(e) => handleInputChange(e, -1)}
+                    placeholder="Name"
+                    fullWidth
+                  />
+                </TableCell>
+                <TableCell>
+                  <TextField
+                    name="price"
+                    value={newMenuItem.price}
+                    onChange={(e) => handleInputChange(e, -1)}
+                    placeholder="Price"
+                    fullWidth
+                  />
+                </TableCell>
+                <TableCell>
+                  <TextField
+                    name="calories"
+                    value={newMenuItem.calories}
+                    onChange={(e) => handleInputChange(e, -1)}
+                    placeholder="Calories"
+                    fullWidth
+                  />
+                </TableCell>
+                <TableCell>
+                  <TextField
+                    name="description"
+                    value={newMenuItem.description}
+                    onChange={(e) => handleInputChange(e, -1)}
+                    placeholder="Description"
+                    fullWidth
+                  />
+                </TableCell>
+                <TableCell align="center">
+                  <Button
+                    variant="contained"
+                    color="success"
+                    size="small"
+                    onClick={() => handleAdd(newMenuItem)}
+                    style={{ width: "80px" }}
+                  >
+                    Add
+                  </Button>
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </Box>

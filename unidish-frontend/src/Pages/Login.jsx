@@ -55,7 +55,7 @@ const Login = () => {
         const userResponse = await getUserByToken(token);
         console.log(userResponse.data);
         dispatch(setUserInfo(userResponse.data));
-        navigate("/DiningHalls");
+        navigate("/restaurants");
         // const userResponse = await getUser();
       }
       console.log(loginResponse);
