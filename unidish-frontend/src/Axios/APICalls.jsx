@@ -57,7 +57,6 @@ export const getUserByToken = async (token) => {
 export const getDiningHallsWithRestaurants = async () => {
   try {
     const response = await instance.get("/getDiningHallsWithRestaurants");
-    // console.log(response.data);
     return response.data;
   } catch (err) {
     console.log(err);

@@ -81,7 +81,6 @@ const EditProfile = ({ open, onClose }) => {
         currUser={currUser}
       />
     </>
-    // </div>
   );
 };
 

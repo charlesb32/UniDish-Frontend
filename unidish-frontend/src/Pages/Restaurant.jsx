@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getRestaurantById } from "../Axios/APICalls";
 import RestaurantHeader from "../Components/RestaurantHeader";
 import RestaurantReviews from "../Components/RestaurantReviews";
+import "../Styling/Restaurant.css";
 
 const Restaurant = () => {
   const { restaurantId } = useParams();

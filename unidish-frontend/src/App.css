@@ -1,3 +1,5 @@
+/* All styling here go to multiple components or the component they belong to only has 1 styling */
+
 .main-content {
   margin-left: 13%; /* starting after the sidebar */
   display: flex;
@@ -85,31 +87,6 @@
   justify-content: flex-end; /* Aligns the button to the right */
   padding-right: 16px;
   margin-bottom: 16px;
-}
-
-.Restaurant-Content {
-  display: flex;
-  flex-direction: column; /* This will stack children vertically */
-  width: 100%;
-  margin-left: 16px;
-  margin-right: 16px;
-  /* border: 1px solid #000; */
-}
-
-.Restaurant-Card-Header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%; /* Ensure the container spans the full width */
-  height: 10%;
-  /* border: 1px solid #000; */
-}
-
-.Restaurant-Card-Header .button-group {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-  /* padding-right: 16px; */
 }
 
 .View-Comments-Box {
