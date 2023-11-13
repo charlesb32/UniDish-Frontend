@@ -83,6 +83,7 @@ const WriteReview = ({ open, onClose, restaurant }) => {
           value={reviewData.description}
           onChange={handleChange}
           name="description"
+          placeholder="Write review here"
         />
         <Box mt={2}>
           <Button

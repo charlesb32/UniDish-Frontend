@@ -136,7 +136,7 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
             {menuItems.map((item, index) => {
               // console.log(item);
               return (
-                <TableRow key={item.id}>
+                <TableRow key={item.id + index}>
                   <TableCell>
                     <TextField
                       name="name"

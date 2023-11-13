@@ -24,10 +24,14 @@ const SignUp = () => {
     }));
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = async (event) => {
+    event.preventDefault(); // Prevent the default form submission
     console.log(formData);
-    addUser(formData);
-    navigate("/login");
+    const response = await addUser(formData);
+    if (response.message === "User added successfully") {
+      navigate("/login");
+      alert("Account Created");
+    }
   };
   return (
     <div className="signup">

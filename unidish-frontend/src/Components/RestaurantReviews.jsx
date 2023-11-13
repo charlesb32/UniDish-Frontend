@@ -10,10 +10,11 @@ import CommentIcon from "@mui/icons-material/Comment";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { useState, useEffect } from "react";
-import { dislikeReview, getReviews, likeReview } from "../Axios/APICalls";
+import { dislike, getReviews, like } from "../Axios/APICalls";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { incrementUpdateCounter } from "../Redux/diningUpdateActions";
+import Comment from "./Comment";
 
 const RestaurantReviews = ({ restaurant }) => {
   const currUser = useSelector((state) => state.user.userInfo.user.sub);
@@ -23,7 +24,8 @@ const RestaurantReviews = ({ restaurant }) => {
   const dispatch = useDispatch();
   //   console.log(currUser);
   const [reviews, setReviews] = useState([]);
-
+  const [openCommentModal, setOpenCommentModal] = useState(false);
+  const [currPost, setCurrPost] = useState({});
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -41,10 +43,11 @@ const RestaurantReviews = ({ restaurant }) => {
   const handleLike = async (reviewId) => {
     const likePayload = {
       userId: currUser.id,
-      reviewId: reviewId,
+      postId: reviewId,
+      likeType: "review",
     };
     console.log(likePayload);
-    const response = await likeReview(likePayload);
+    const response = await like(likePayload);
     console.log(response);
     dispatch(incrementUpdateCounter());
   };
@@ -52,11 +55,21 @@ const RestaurantReviews = ({ restaurant }) => {
   const handleDislike = async (reviewId) => {
     const dislikePayload = {
       userId: currUser.id,
-      reviewId: reviewId,
+      postId: reviewId,
+      dislikeType: "review",
     };
     console.log(dislikePayload);
-    await dislikeReview(dislikePayload);
+    await dislike(dislikePayload);
     dispatch(incrementUpdateCounter());
+  };
+
+  const handleCommentClick = (review) => {
+    setOpenCommentModal(true);
+    setCurrPost(review);
+  };
+
+  const handleCloseCommentModal = () => {
+    setOpenCommentModal(false);
   };
 
   return (
@@ -106,7 +119,11 @@ const RestaurantReviews = ({ restaurant }) => {
                 alignItems: "center",
               }}
             >
-              <IconButton aria-label="comment" color="primary">
+              <IconButton
+                aria-label="comment"
+                color="primary"
+                onClick={() => handleCommentClick(review)}
+              >
                 <CommentIcon />
               </IconButton>
               <Box>
@@ -138,6 +155,12 @@ const RestaurantReviews = ({ restaurant }) => {
           </CardContent>
         </Card>
       ))}
+
+      <Comment
+        open={openCommentModal}
+        onClose={handleCloseCommentModal}
+        post={currPost}
+      />
     </div>
   );
 };

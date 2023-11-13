@@ -243,9 +243,9 @@ export const getUserById = async (userId) => {
   }
 };
 
-export const likeReview = async (likeInfo) => {
+export const like = async (likeInfo) => {
   try {
-    const response = await instance.post("/likeReview", { likeInfo });
+    const response = await instance.post("/like", { likeInfo });
     return response.data;
   } catch (err) {
     console.log(err);
@@ -254,9 +254,9 @@ export const likeReview = async (likeInfo) => {
   }
 };
 
-export const dislikeReview = async (dislikeInfo) => {
+export const dislike = async (dislikeInfo) => {
   try {
-    const response = await instance.post("/dislikeReview", { dislikeInfo });
+    const response = await instance.post("/dislike", { dislikeInfo });
     return response.data;
   } catch (err) {
     console.log(err);
@@ -281,6 +281,30 @@ export const getOverallRestaurantRating = async (restId) => {
 export const createReview = async (reviewInfo) => {
   try {
     const response = await instance.post("/createReview", { reviewInfo });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const getReviewComments = async (reviewId, currUserId) => {
+  try {
+    const response = await instance.get("/getComments", {
+      params: { reviewId: reviewId, currUserId: currUserId },
+    });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const createComment = async (commentInfo) => {
+  try {
+    const response = await instance.post("/createComment", { commentInfo });
     return response.data;
   } catch (err) {
     console.log(err);

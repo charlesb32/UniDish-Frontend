@@ -55,7 +55,7 @@ const Login = () => {
         const userResponse = await getUserByToken(token);
         console.log(userResponse.data);
         dispatch(setUserInfo(userResponse.data));
-        navigate("/restaurants");
+        navigate("/restaurants/100");
         // const userResponse = await getUser();
       }
       console.log(loginResponse);
@@ -70,6 +70,11 @@ const Login = () => {
         <div className="login-logo">
           <img src={Logo} alt="App Logo" />
           <h2>UniDish</h2>
+          <p>
+            Note: sign in with username: timSands@gmail.com and password: VT if
+            you want to see what it is like to be university admin and
+            create/modify/delete dining halls, restaurants, and menus{" "}
+          </p>
         </div>
         <form className="login-form" onSubmit={handleLogin}>
           <TextField
