@@ -1,0 +1,54 @@
+#topbar_logo_img {
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  margin-right: 20px;
+}
+
+.topbar {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.topbar-logo {
+  width: 40px; /* Adjust this as per your logo's dimensions */
+  margin-right: 10px;
+}
+
+.topbar-title {
+  margin: 0;
+  margin-right: 20px;
+  font-weight: 500;
+}
+
+.topbar-welcome {
+  margin: 0;
+  font-weight: 400;
+  color: #666;
+}
+
+.topbar-buttons {
+  display: flex;
+  gap: 10px; /* space between buttons */
+}
+
+.topbar-button {
+  color: #fff;
+  border-color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.topbar-button:hover {
+  background-color: #333;
+  color: #fff;
+}

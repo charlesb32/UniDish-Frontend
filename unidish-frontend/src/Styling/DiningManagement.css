@@ -1,0 +1,34 @@
+.DiningHall-Management-Container {
+  padding: 16px;
+  /* margin-left: 16px; */
+}
+
+.DiningHall-Management-Card {
+  margin-top: 16px;
+}
+
+.Manage-Dining-Hall-Card-Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.Manage-Restaurant {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.Manage-Restaurant li {
+  list-style: none;
+}
+
+/* Adjustments for responsiveness */
+@media (max-width: 600px) {
+  .Manage-Dining-Hall-Card-Header h3 {
+    font-size: 1rem;
+  }
+}

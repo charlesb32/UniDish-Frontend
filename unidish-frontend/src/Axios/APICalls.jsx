@@ -11,7 +11,6 @@ export const checkDBConnection = async () => {
     return response.data;
   } catch (err) {
     console.log(err);
-    // throw err;
   }
 };
 

@@ -19,7 +19,7 @@ import DeleteDiningHall from "../Components/DeleteDiningHall";
 import EditMenu from "../Components/EditMenu";
 import { useSelector } from "react-redux";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-
+import "../Styling/DiningManagement.css";
 const DiningManagement = () => {
   const diningUpdateCount = useSelector(
     (state) => state.diningUpdateFlag.updateCounter

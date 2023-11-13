@@ -3,7 +3,7 @@ import { TextField, Button } from "@mui/material";
 import Logo from "../Assets/Logo.jpg";
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../Axios/APICalls";
-
+import "../Styling/SignUp.css";
 const SignUp = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

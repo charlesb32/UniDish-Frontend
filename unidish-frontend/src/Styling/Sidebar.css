@@ -1,0 +1,79 @@
+.sidebar {
+  width: 13%; /* Set the sidebar width */
+  height: 100vh; /* Full height */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 70px; /* Stay at the top */
+  left: 0;
+  background-color: #f7f7f7; /* Light grey background */
+  /* overflow-x: hidden; Disable horizontal scroll */
+  /* padding-top: 20px; */
+  box-shadow: 2px 0 5px 0 rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-sizing: border-box; /* Ensure padding and border are included in the box's total height */
+}
+.sidebar h3 {
+  padding: 10px 15px;
+  margin: 0;
+  background-color: #fff; /* White background for the section headers */
+  color: #333; /* Dark grey color for text */
+  text-transform: uppercase; /* Uppercase section headers */
+  letter-spacing: 1px; /* More spacing between letters */
+  font-size: 16px;
+  border-bottom: 1px solid #ddd; /* Subtle border for separation */
+}
+.sidebar ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 15px;
+  text-align: left; /* Align text to the left */
+  border-bottom: 1px solid/ #ddd;
+  background-color: #fff; /* White background for list items */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.sidebar ul li:hover {
+  background-color: #e9e9e9; /* Slightly darker background on hover */
+}
+
+.sidebar ul li a {
+  text-decoration: none; /* No underline on links */
+  color: #333; /* Dark grey color for link text */
+  display: block; /* Make the entire list item clickable */
+}
+
+.sidebar ul li:hover a {
+  color: #000; /* Darker text on hover for contrast */
+}
+
+.sidebar .sidebar-content {
+  margin-right: 1px; /* Fixes an issue where some elements may overflow */
+}
+
+/* Apply a scroll if the content exceeds the viewport height */
+.sidebar-content {
+  overflow-y: auto;
+  height: calc(
+    100vh - 70px
+  ); /* Adjust height calculation if you change padding */
+}
+
+/* Scrollbar styling */
+.sidebar-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

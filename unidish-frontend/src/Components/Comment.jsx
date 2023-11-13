@@ -34,20 +34,14 @@ const Comment = ({ open, onClose, post }) => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        // console.log(currUser);
         const comments = await getReviewComments(post.review_id, currUser.id);
-        console.log(comments);
         setComments(comments.comment);
-        // const reviewsData = await getReviews(restaurant[0], currUser.id);
-        // console.log(reviewsData);
-        // setReviews(reviewsData);
       } catch (error) {
         console.error("Failed to fetch reviews:", error);
       }
     };
     fetchComments();
   }, [post, currUser.id, reviewInteractionCount]);
-  console.log(post);
 
   const handleLike = async (commentId) => {
     const likePayload = {
@@ -55,9 +49,7 @@ const Comment = ({ open, onClose, post }) => {
       postId: commentId,
       likeType: "comment",
     };
-    console.log(likePayload);
-    const response = await like(likePayload);
-    console.log(response);
+    await like(likePayload);
     dispatch(incrementUpdateCounter());
   };
 
@@ -67,24 +59,20 @@ const Comment = ({ open, onClose, post }) => {
       postId: commentId,
       dislikeType: "comment",
     };
-    console.log(dislikePayload);
-    const response = await dislike(dislikePayload);
-    console.log(response);
+    await dislike(dislikePayload);
     dispatch(incrementUpdateCounter());
   };
 
   const handleSubmit = async () => {
-    console.log(comment);
     const now = new Date();
     const newNow = now.toISOString().slice(0, 19).replace("T", " ");
-    const response = await createComment({
+    await createComment({
       description: comment,
       reviewId: post.review_id,
       date: newNow,
       userId: currUser.id,
     });
     setComment("");
-    console.log(response);
     dispatch(incrementUpdateCounter());
   };
 
@@ -173,7 +161,6 @@ const Comment = ({ open, onClose, post }) => {
           sx={{
             maxHeight: "50%", // Set the maximum height to 50% of the parent container
             overflowY: "auto", // Enable vertical scrolling
-            // Add other styling as needed
           }}
         >
           {comments.map((comment) => (

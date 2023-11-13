@@ -10,8 +10,9 @@ import { persistStore } from "redux-persist";
 import store from "../Redux/store";
 import EditProfile from "./EditProfile";
 import CreateUniversityAdmin from "./CreateUniveristyAdmin";
+import "../Styling/Topbar.css";
+
 const Topbar = () => {
-  // let currUser;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currUser = useSelector((state) => state.user.userInfo.user.sub);

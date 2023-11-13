@@ -4,11 +4,9 @@ import Logo from "../Assets/Logo.jpg";
 import { useNavigate } from "react-router-dom";
 import { login, getUserByToken } from "../Axios/APICalls";
 import { setAuthToken } from "../Axios/setAuthToken";
-// import { setAuthToken } from "../Axios/setAuthToken";
-// import { getUser } from "../Axios/APICalls";
 import { useDispatch } from "react-redux";
 import { setUserInfo } from "../Redux/userActions";
-// import { setUserInfo } from "../Redux/userActions";
+import "../Styling/Login.css";
 
 const Login = () => {
   const navigate = useNavigate();

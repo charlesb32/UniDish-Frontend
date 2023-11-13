@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getDiningHallsWithRestaurants } from "../Axios/APICalls";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "../Styling/Sidebar.css";
+
 const Sidebar = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
