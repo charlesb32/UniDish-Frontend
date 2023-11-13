@@ -26,7 +26,6 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
   const diningUpdateCount = useSelector(
     (state) => state.diningUpdateFlag.updateCounter
   );
-  console.log(restaurant);
   const [menuItems, setMenuItems] = useState([
     { name: "", price: "", calories: "", description: "" },
   ]);
@@ -59,11 +58,9 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
             description: item[4],
             restaurant_id: item[5], // Assuming the last element is the restaurant_id
           }));
-          console.log(menu.menu_items);
           //   setMenuItems(menu.menu_items);
           setMenuItems(formattedMenuItems);
         } catch (error) {
-          console.error("Error fetching data:", error);
           throw error;
         }
       }
@@ -72,9 +69,7 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
   }, [restaurant, diningUpdateCount]);
 
   const handleInputChange = (e, itemIndex, attributeIndex) => {
-    console.log(menuItems);
     const { name, value } = e.target;
-    // console.log(name, value, itemIndex);
     if (itemIndex >= 0) {
       // Update an existing item
       const newMenuItems = [...menuItems];
@@ -82,14 +77,12 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
       setMenuItems(newMenuItems);
     } else {
       // Update the form for a new item
-      console.log(name, value);
       //   setMenuItems({ ...menuItems, [name]: value });
       setNewMenuItem({ ...newMenuItem, [name]: value });
     }
   };
 
   const handleUpdate = async (menuItem) => {
-    console.log(menuItem);
     // const response = await editMenuItem(menuItem);
     const response = await editMenuItem(menuItem);
     if (response.success) {
@@ -105,13 +98,11 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
   };
 
   const handleDelete = async (menuItem) => {
-    console.log(menuItem);
     await deleteMenuItem(menuItem.id);
     dispatch(incrementUpdateCounter());
   };
 
   const handleAdd = async (menuItem) => {
-    console.log(menuItem);
     await addMenuItem(newMenuItem);
     dispatch(incrementUpdateCounter());
   };
@@ -134,7 +125,6 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
           </TableHead>
           <TableBody>
             {menuItems.map((item, index) => {
-              // console.log(item);
               return (
                 <TableRow key={item.id + index}>
                   <TableCell>
@@ -144,7 +134,7 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
                       onChange={(e) => handleInputChange(e, index, 1)}
                       fullWidth
                       InputProps={{
-                        style: { color: "black" }, // Inline style for text color
+                        style: { color: "black" },
                         readOnly: editMode === "view",
                       }}
                     />
@@ -156,7 +146,7 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
                       onChange={(e) => handleInputChange(e, index, 3)}
                       fullWidth
                       InputProps={{
-                        style: { color: "black" }, // Inline style for text color
+                        style: { color: "black" },
                         readOnly: editMode === "view",
                       }}
                     />
@@ -168,7 +158,7 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
                       onChange={(e) => handleInputChange(e, index, 2)}
                       fullWidth
                       InputProps={{
-                        style: { color: "black" }, // Inline style for text color
+                        style: { color: "black" },
                         readOnly: editMode === "view",
                       }}
                     />
@@ -180,7 +170,7 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
                       onChange={(e) => handleInputChange(e, index, 4)}
                       fullWidth
                       InputProps={{
-                        style: { color: "black" }, // Inline style for text color
+                        style: { color: "black" },
                         readOnly: editMode === "view",
                       }}
                     />

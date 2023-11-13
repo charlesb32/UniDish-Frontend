@@ -1,4 +1,3 @@
-// diningUpdateReducer.js
 const INCREMENT_UPDATE_COUNTER = "INCREMENT_UPDATE_COUNTER";
 
 // The initial state is just a counter set to 0
@@ -22,9 +21,5 @@ const diningUpdateReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-// export const incrementUpdateCounter = () => ({
-//   type: INCREMENT_UPDATE_COUNTER,
-// });
 
 export default diningUpdateReducer;

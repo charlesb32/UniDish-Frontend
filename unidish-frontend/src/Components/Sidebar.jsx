@@ -10,7 +10,6 @@ const Sidebar = () => {
   );
 
   useEffect(() => {
-    // console.log("REDUX WORKED");
     const fetchDiningHallsAndRestaurants = async () => {
       try {
         const res = await getDiningHallsWithRestaurants();
@@ -19,7 +18,7 @@ const Sidebar = () => {
           setData(res.dining_halls);
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        throw error;
       }
     };
 
@@ -27,17 +26,14 @@ const Sidebar = () => {
   }, [diningUpdateCount]);
 
   const handleRestaurantClick = (rest) => {
-    // console.log("CLICKED RESTAURANT: ", rest);
     navigate(`restaurants/${rest.id}`);
   };
 
   return (
     <div className="sidebar">
       <div className="sidebar-content">
-        {/* <h2>Dining Halls</h2> */}
         {data.length > 0 &&
           data.map((diningHall) => {
-            // console.log(diningHall.dining_hall[1]);
             return (
               <div key={diningHall.id}>
                 <h3>{diningHall.dining_hall[1]}</h3>

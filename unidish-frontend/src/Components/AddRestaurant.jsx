@@ -6,7 +6,6 @@ import { incrementUpdateCounter } from "../Redux/diningUpdateActions";
 
 const AddRestaurant = ({ open, onClose, diningHall }) => {
   const dispatch = useDispatch();
-  console.log(diningHall);
   const [restData, setRestData] = useState({
     name: "",
     description: "",
@@ -35,7 +34,6 @@ const AddRestaurant = ({ open, onClose, diningHall }) => {
   };
   const handleSubmit = async () => {
     restData.diningHallId = diningHall[0];
-    console.log(restData);
     const response = await addRestaurant(restData);
     if (response.message === "Restaurant Added successfully") {
       dispatch(incrementUpdateCounter());

@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { incrementUpdateCounter } from "../Redux/diningUpdateActions";
 
 const EditRestaurant = ({ open, onClose, restaurant }) => {
-  //   console.log(restaurant);
   const dispatch = useDispatch();
   const [restData, setRestData] = useState({
     name: "",
@@ -15,7 +14,6 @@ const EditRestaurant = ({ open, onClose, restaurant }) => {
     diningHallId: "",
   });
 
-  // This effect will update restData whenever the restaurant prop changes.
   useEffect(() => {
     if (restaurant) {
       setRestData({
@@ -26,7 +24,7 @@ const EditRestaurant = ({ open, onClose, restaurant }) => {
         diningHallId: restaurant.id,
       });
     }
-  }, [restaurant]); // Only re-run the effect if restaurant changes
+  }, [restaurant]);
 
   const handleClose = () => {
     onClose();
@@ -48,7 +46,6 @@ const EditRestaurant = ({ open, onClose, restaurant }) => {
   };
 
   const handleSubmit = async () => {
-    console.log(restData);
     const response = await editRestaurant(restData);
     dispatch(incrementUpdateCounter());
     alert(response.message);

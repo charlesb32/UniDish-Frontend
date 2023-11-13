@@ -39,7 +39,6 @@ const DiningManagement = () => {
   const [openEditMenuModal, setOpenEditMenuModal] = useState(false);
 
   const handleAddRestaurantClick = (diningHall) => {
-    console.log(diningHall);
     setOpenAddRestaurantModal(true);
     setSelectedDiningHall(diningHall.dining_hall);
   };
@@ -180,7 +179,6 @@ const DiningManagement = () => {
       >
         <MenuItem
           onClick={() => {
-            console.log("Edit restaurant:", selectedRestaurant);
             setOpenEditRestaurantModal(true);
             handleMenuClose();
           }}
@@ -197,7 +195,6 @@ const DiningManagement = () => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            console.log("Delete restaurant:", selectedRestaurant);
             setOpenDeleteRestaurantModal(true);
             handleMenuClose();
           }}

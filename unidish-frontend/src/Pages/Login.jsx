@@ -26,25 +26,6 @@ const Login = () => {
     }));
   };
 
-  //   const handleLogin = async (e) => {
-  //     e.preventDefault(); // Prevent the default form submission behavior
-
-  //     try {
-  //       const loginResponse = await login(formData); // Await the login response
-
-  //       if (loginResponse && localStorage.getItem("token")) {
-  //         const token = localStorage.getItem("token");
-  //         setAuthToken(token);
-  //         const userResponse = await getUser(token); // Await the user response
-  //         dispatch(setUserInfo(userResponse.data));
-  //         navigate("/home"); // Navigate to /home if login is successful
-  //       } else {
-  //         console.log("Not Authed");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error during login:", error);
-  //     }
-  //   };
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -53,16 +34,13 @@ const Login = () => {
         const token = localStorage.getItem("token");
         setAuthToken(token);
         const userResponse = await getUserByToken(token);
-        console.log(userResponse.data);
         dispatch(setUserInfo(userResponse.data));
         navigate("/restaurants/100");
         // const userResponse = await getUser();
       }
-      console.log(loginResponse);
     } catch (err) {
       console.log("Error during login:", err);
     }
-    console.log("LOGIN ATTEMPT");
   };
   return (
     <div className="login-container">

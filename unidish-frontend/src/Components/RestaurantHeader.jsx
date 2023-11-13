@@ -16,11 +16,10 @@ const RestaurantHeader = ({ restaurant }) => {
   useEffect(() => {
     const fetchOverallRating = async () => {
       try {
-        console.log(restaurant);
         const rating = await getOverallRestaurantRating(restaurant[0]);
         setOverallRating(rating.averageRating);
       } catch (error) {
-        console.error("Failed to fetch reviews:", error);
+        throw error;
       }
     };
     fetchOverallRating();

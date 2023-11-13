@@ -14,7 +14,6 @@ const EditProfile = ({ open, onClose }) => {
     profile_description: currUser.profile_description,
     type: currUser.type,
   });
-  // console.log(currUser);
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
 
   const handlePasswordModalClose = () => {
@@ -28,7 +27,6 @@ const EditProfile = ({ open, onClose }) => {
     }));
   };
   const handleSave = async () => {
-    console.log(userData);
     await updateUserInfo(userData);
     onClose();
   };

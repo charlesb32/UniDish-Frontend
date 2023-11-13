@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { incrementUpdateCounter } from "../Redux/diningUpdateActions";
 
 const EditDiningHall = ({ open, onClose, diningHall }) => {
-  console.log(diningHall);
   const dispatch = useDispatch();
   const [diningHallData, setDiningHallData] = useState({
     name: "",
@@ -42,7 +41,6 @@ const EditDiningHall = ({ open, onClose, diningHall }) => {
   };
 
   const handleSubmit = async () => {
-    console.log(diningHallData);
     const response = await editDiningHall(diningHallData);
     dispatch(incrementUpdateCounter());
     alert(response.message);

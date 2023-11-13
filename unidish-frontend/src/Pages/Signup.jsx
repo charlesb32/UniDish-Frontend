@@ -26,7 +26,6 @@ const SignUp = () => {
 
   const handleSignUp = async (event) => {
     event.preventDefault(); // Prevent the default form submission
-    console.log(formData);
     const response = await addUser(formData);
     if (response.message === "User added successfully") {
       navigate("/login");

@@ -35,7 +35,6 @@ const WriteReview = ({ open, onClose, restaurant }) => {
     const now = new Date();
     const newNow = now.toISOString().slice(0, 19).replace("T", " ");
     reviewData.date = newNow;
-    console.log(reviewData);
     await createReview(reviewData);
     dispatch(incrementUpdateCounter());
     handleClose();

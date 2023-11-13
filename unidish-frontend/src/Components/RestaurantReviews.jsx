@@ -22,19 +22,16 @@ const RestaurantReviews = ({ restaurant }) => {
     (state) => state.diningUpdateFlag.updateCounter
   );
   const dispatch = useDispatch();
-  //   console.log(currUser);
   const [reviews, setReviews] = useState([]);
   const [openCommentModal, setOpenCommentModal] = useState(false);
   const [currPost, setCurrPost] = useState({});
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        console.log(currUser);
         const reviewsData = await getReviews(restaurant[0], currUser.id);
-        console.log(reviewsData);
         setReviews(reviewsData);
       } catch (error) {
-        console.error("Failed to fetch reviews:", error);
+        throw error;
       }
     };
     fetchReviews();
@@ -46,9 +43,7 @@ const RestaurantReviews = ({ restaurant }) => {
       postId: reviewId,
       likeType: "review",
     };
-    console.log(likePayload);
-    const response = await like(likePayload);
-    console.log(response);
+    await like(likePayload);
     dispatch(incrementUpdateCounter());
   };
 
@@ -58,7 +53,6 @@ const RestaurantReviews = ({ restaurant }) => {
       postId: reviewId,
       dislikeType: "review",
     };
-    console.log(dislikePayload);
     await dislike(dislikePayload);
     dispatch(incrementUpdateCounter());
   };

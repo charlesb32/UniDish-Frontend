@@ -1,19 +1,15 @@
 import "./App.css";
-import React, { useState } from "react";
+import React from "react";
 import Topbar from "./Components/Topbar";
 import Sidebar from "./Components/Sidebar";
-import DiningHall from "./Pages/DiningHall";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignUp from "./Pages/Signup";
 import Login from "./Pages/Login";
 import { useSelector } from "react-redux";
 import Restaurant from "./Pages/Restaurant";
-import ManageDiningHalls from "./Pages/DiningManagement";
 import DiningManagement from "./Pages/DiningManagement";
 
 function App() {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const isLoggedIn = useSelector((state) => state.user.userInfo);
   const currUser = isLoggedIn ? isLoggedIn.user.sub : undefined;
 
@@ -25,7 +21,6 @@ function App() {
           <Sidebar />
           <div className="main-content">
             <Routes>
-              <Route path="/DiningHalls" element={<DiningHall />} />
               <Route
                 path="restaurants/:restaurantId"
                 element={<Restaurant />}
@@ -45,12 +40,10 @@ function App() {
           <Sidebar />
           <div className="main-content">
             <Routes>
-              <Route path="/DiningHalls" element={<DiningHall />} />
               <Route
                 path="restaurants/:restaurantId"
                 element={<Restaurant />}
               />
-              {/* <Route path="/" element={<DiningHall />} /> */}
             </Routes>
           </div>
         </BrowserRouter>

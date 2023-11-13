@@ -17,7 +17,6 @@ const ChangePassword = ({ open, closeModal, currUser }) => {
   };
 
   const handleSubmit = async () => {
-    console.log(passwordInfo, currUser);
     const response = await changePassword(passwordInfo, currUser.id);
     if (response.message === "User Password updated successfully") {
       alert("User Password updated successfully");

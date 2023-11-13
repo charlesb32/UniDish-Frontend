@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { incrementUpdateCounter } from "../Redux/diningUpdateActions";
 
 const DeleteDiningHall = ({ open, onClose, diningHall }) => {
-  console.log(diningHall);
   const dispatch = useDispatch();
 
   const handleSubmit = async () => {

@@ -21,7 +21,6 @@ const CreateUniversityAdmin = ({ open, onClose }) => {
   };
 
   const handleSubmit = async () => {
-    console.log(universityAdminInfo);
     const response = await addUser(universityAdminInfo);
     alert(response.message);
   };
