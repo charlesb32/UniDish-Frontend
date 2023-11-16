@@ -9,7 +9,6 @@ import {
   TextField,
   Button,
 } from "@mui/material";
-import CommentIcon from "@mui/icons-material/Comment";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { useEffect, useState } from "react";

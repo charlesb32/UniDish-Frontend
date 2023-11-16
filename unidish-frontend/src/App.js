@@ -8,12 +8,17 @@ import Login from "./Pages/Login";
 import { useSelector } from "react-redux";
 import Restaurant from "./Pages/Restaurant";
 import DiningManagement from "./Pages/DiningManagement";
+import StatisticReports from "./Pages/StatisticReports";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.user.userInfo);
   const currUser = isLoggedIn ? isLoggedIn.user.sub : undefined;
 
-  if (isLoggedIn && currUser && currUser.type === "university admin") {
+  if (
+    isLoggedIn &&
+    currUser &&
+    (currUser.type === "university admin" || currUser.type === "admin")
+  ) {
     return (
       <div className="App">
         <BrowserRouter>
@@ -26,6 +31,7 @@ function App() {
                 element={<Restaurant />}
               />
               <Route path="diningManagement" element={<DiningManagement />} />
+              <Route path="statisticReports" element={<StatisticReports />} />
             </Routes>
           </div>
         </BrowserRouter>

@@ -45,13 +45,22 @@ const Topbar = () => {
       </div>
       <div className="topbar-buttons">
         {currUser.type === "university admin" && (
-          <Button
-            className="topbar-button"
-            variant="contained"
-            onClick={() => navigate("diningManagement")}
-          >
-            Manage Dining Halls
-          </Button>
+          <>
+            <Button
+              className="topbar-button"
+              variant="contained"
+              onClick={() => navigate("diningManagement")}
+            >
+              Manage Dining Halls
+            </Button>
+            <Button
+              className="topbar-button"
+              variant="contained"
+              onClick={() => navigate("statisticReports")}
+            >
+              Statistical Reports
+            </Button>
+          </>
         )}
         {currUser.type === "admin" && (
           <Button

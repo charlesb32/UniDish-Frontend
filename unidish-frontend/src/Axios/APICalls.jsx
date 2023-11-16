@@ -228,19 +228,6 @@ export const getReviews = async (restId, currUserId) => {
   }
 };
 
-export const getUserById = async (userId) => {
-  try {
-    const response = await instance.get("/getUserById", {
-      params: { userId },
-    });
-    return response.data;
-  } catch (err) {
-    console.log(err);
-    alert(err.response.data.message);
-    return err;
-  }
-};
-
 export const like = async (likeInfo) => {
   try {
     const response = await instance.post("/like", { likeInfo });
@@ -306,6 +293,51 @@ export const createComment = async (commentInfo) => {
     return response.data;
   } catch (err) {
     console.log(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const getWeeklyReviewReport = async () => {
+  try {
+    const response = await instance.get("/getWeeklyReviewReport", {
+      responseType: "blob",
+    });
+    // Convert blob to a local URL
+    const image = URL.createObjectURL(response.data);
+    return image;
+  } catch (err) {
+    console.error(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const getWeeklyCommentReport = async () => {
+  try {
+    const response = await instance.get("/getWeeklyCommentReport", {
+      responseType: "blob",
+    });
+    // Convert blob to a local URL
+    const image = URL.createObjectURL(response.data);
+    return image;
+  } catch (err) {
+    console.error(err);
+    alert(err.response.data.message);
+    return err;
+  }
+};
+
+export const getTop3MostActiveUsersReport = async () => {
+  try {
+    const response = await instance.get("/getTop3MostActiveUsersReport", {
+      responseType: "blob",
+    });
+    // Convert blob to a local URL
+    const image = URL.createObjectURL(response.data);
+    return image;
+  } catch (err) {
+    console.error(err);
     alert(err.response.data.message);
     return err;
   }
