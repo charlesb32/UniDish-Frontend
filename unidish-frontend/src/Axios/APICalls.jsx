@@ -118,7 +118,7 @@ export const changePassword = async (passwordPayload, userId) => {
 
 export const addDiningHall = async (diningHallData) => {
   try {
-    const response = await instance.post("/addDiningHall", { diningHallData });
+    const response = await instance.post("/api/diningHalls/addDiningHall", { diningHallData });
     return response.data;
   } catch (err) {
     console.log(err);
@@ -129,7 +129,7 @@ export const addDiningHall = async (diningHallData) => {
 
 export const addRestaurant = async (restData) => {
   try {
-    const response = await instance.post("/addRestaurant", { restData });
+    const response = await instance.post("/api/restaurants/addRestaurant", { restData });
     return response.data;
   } catch (err) {
     console.log(err);
@@ -140,7 +140,7 @@ export const addRestaurant = async (restData) => {
 
 export const deleteRestaurant = async (restId) => {
   try {
-    const response = await instance.delete(`deleteRestaurant/${restId}`);
+    const response = await instance.delete(`/api/restaurants/deleteRestaurant/${restId}`);
     return response.data;
   } catch (err) {
     console.log(err);
@@ -151,7 +151,7 @@ export const deleteRestaurant = async (restId) => {
 
 export const deleteDiningHall = async (diningHallId) => {
   try {
-    const response = await instance.delete(`deleteDiningHall/${diningHallId}`);
+    const response = await instance.delete(`/api/diningHalls/deleteDiningHall/${diningHallId}`);
     return response.data;
   } catch (err) {
     console.log(err);
@@ -162,7 +162,7 @@ export const deleteDiningHall = async (diningHallId) => {
 
 export const editRestaurant = async (restData) => {
   try {
-    const response = await instance.put("/editRestaurant", { restData });
+    const response = await instance.put("/api/restaurants/updateRestaurant", { restData });
     return response.data;
   } catch (err) {
     console.log(err);
@@ -173,7 +173,7 @@ export const editRestaurant = async (restData) => {
 
 export const editDiningHall = async (diningHallData) => {
   try {
-    const response = await instance.put("/editDiningHall", { diningHallData });
+    const response = await instance.put("api/diningHalls/updateDiningHall", { diningHallData });
     return response.data;
   } catch (err) {
     console.log(err);

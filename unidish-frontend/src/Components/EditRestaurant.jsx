@@ -12,16 +12,18 @@ const EditRestaurant = ({ open, onClose, restaurant }) => {
     menuName: "",
     menuDescription: "",
     diningHallId: "",
+    id: ""
   });
 
   useEffect(() => {
     if (restaurant) {
       setRestData({
+        id: restaurant.id,
         name: restaurant.name,
         description: restaurant.description,
         menuName: "",
         menuDescription: "",
-        diningHallId: restaurant.id,
+        diningHallId: restaurant.dining_hall_id,
       });
     }
   }, [restaurant]);
@@ -33,7 +35,7 @@ const EditRestaurant = ({ open, onClose, restaurant }) => {
       description: restaurant.description,
       menuName: "",
       menuDescription: "",
-      diningHallId: restaurant.id,
+      diningHallId: restaurant.diningHallId,
     });
   };
 

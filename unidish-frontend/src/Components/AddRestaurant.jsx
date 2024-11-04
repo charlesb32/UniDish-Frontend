@@ -35,7 +35,7 @@ const AddRestaurant = ({ open, onClose, diningHall }) => {
   const handleSubmit = async () => {
     restData.diningHallId = diningHall[0];
     const response = await addRestaurant(restData);
-    if (response.message === "Restaurant Added successfully") {
+    if (response.message === "Restaurant added successfully") {
       dispatch(incrementUpdateCounter());
     }
     alert(response.message);

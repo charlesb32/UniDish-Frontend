@@ -15,7 +15,6 @@ const Sidebar = () => {
     const fetchDiningHallsAndRestaurants = async () => {
       try {
         const res = await getDiningHallsWithRestaurants();
-
         if (res && res.dining_halls) {
           setData(res.dining_halls);
         }
