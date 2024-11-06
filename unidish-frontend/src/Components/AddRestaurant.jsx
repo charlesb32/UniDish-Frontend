@@ -33,7 +33,9 @@ const AddRestaurant = ({ open, onClose, diningHall }) => {
     });
   };
   const handleSubmit = async () => {
-    restData.diningHallId = diningHall[0];
+    console.log(diningHall)
+    restData.diningHallId = diningHall.id;
+    console.log(restData)
     const response = await addRestaurant(restData);
     if (response.message === "Restaurant added successfully") {
       dispatch(incrementUpdateCounter());
@@ -45,7 +47,7 @@ const AddRestaurant = ({ open, onClose, diningHall }) => {
     <Modal open={open} onClose={handleClose}>
       <Box className="Edit-Profile-Box">
         <Typography variant="h6">
-          Dining Hall: {diningHall ? diningHall[1] : ""}
+          Dining Hall: {diningHall ? diningHall.name : ""}
         </Typography>
         <TextField
           fullWidth

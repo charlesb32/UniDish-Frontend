@@ -98,7 +98,7 @@ const DiningManagement = () => {
     const fetchDiningHallsAndRestaurants = async () => {
       try {
         const res = await getDiningHallsWithRestaurants();
-
+        console.log(res)
         if (res && res.dining_halls) {
           setData(res.dining_halls);
         }
@@ -125,7 +125,7 @@ const DiningManagement = () => {
                 <CardContent>
                   <div className="Manage-Dining-Hall-Card-Header">
                     <Typography variant="h6">
-                      {diningHall.dining_hall[1]}
+                      {diningHall.dining_hall.name}
                     </Typography>
                     <div className="Button-Group">
                       <Button

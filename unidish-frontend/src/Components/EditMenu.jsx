@@ -50,13 +50,14 @@ const EditMenu = ({ open, onClose, restaurant, editMode }) => {
       if (restaurant) {
         try {
           const menu = await getMenuItemsForRestaurant(restaurant.id);
+          console.log(menu)
           const formattedMenuItems = menu.menu_items.map((item) => ({
-            id: item[0], // Assuming the first element is the id
-            name: item[1],
-            calories: item[2],
-            price: item[3],
-            description: item[4],
-            restaurant_id: item[5], // Assuming the last element is the restaurant_id
+            id: item['id'], // Assuming the first element is the id
+            name: item['name'],
+            calories: item['calories'],
+            price: item['price'],
+            description: item['description'],
+            restaurantId: item['restaurant_id'], // Assuming the last element is the restaurant_id
           }));
           //   setMenuItems(menu.menu_items);
           setMenuItems(formattedMenuItems);

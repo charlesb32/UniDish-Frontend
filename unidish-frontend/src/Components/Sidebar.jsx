@@ -37,7 +37,7 @@ const Sidebar = () => {
           data.map((diningHall) => {
             return (
               <div key={diningHall.id}>
-                <h3>{diningHall.dining_hall[1]}</h3>
+                <h3>{diningHall.dining_hall.name}</h3>
                 <ul>
                   {diningHall.restaurants.map((restaurant) => (
                     <li

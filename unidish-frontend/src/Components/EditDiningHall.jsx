@@ -14,11 +14,12 @@ const EditDiningHall = ({ open, onClose, diningHall }) => {
   });
   useEffect(() => {
     if (diningHall) {
+      console.log(diningHall)
       setDiningHallData({
-        name: diningHall[1],
-        description: diningHall[4],
-        address: diningHall[2],
-        id: diningHall[0],
+        name: diningHall.name,
+        description: diningHall.description,
+        address: diningHall.address,
+        id: diningHall.id,
       });
     }
   }, [diningHall]);

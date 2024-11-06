@@ -56,7 +56,7 @@ export const getUserByToken = async (token) => {
 
 export const getDiningHallsWithRestaurants = async () => {
   try {
-    const response = await instance.get("/getDiningHallsWithRestaurants");
+    const response = await instance.get("/api/diningHalls/getDiningHallsWithRestaurants");
     return response.data;
   } catch (err) {
     console.log(err);
@@ -67,9 +67,7 @@ export const getDiningHallsWithRestaurants = async () => {
 
 export const getRestaurantById = async (restId) => {
   try {
-    const response = await instance.get("/getRestaurantById", {
-      params: { restId },
-    });
+    const response = await instance.get(`/api/restaurants/getRestaurant/${restId}`);
     return response.data;
   } catch (err) {
     console.log(err);
@@ -80,9 +78,7 @@ export const getRestaurantById = async (restId) => {
 
 export const getMenuItemsForRestaurant = async (restId) => {
   try {
-    const response = await instance.get("/getMenuItemsForRestaurant", {
-      params: { restId },
-    });
+    const response = await instance.get(`/api/menuItems/getMenuItemsForRestaurant/${restId}`)
     return response.data;
   } catch (err) {
     console.log(err);
@@ -173,7 +169,7 @@ export const editRestaurant = async (restData) => {
 
 export const editDiningHall = async (diningHallData) => {
   try {
-    const response = await instance.put("api/diningHalls/updateDiningHall", { diningHallData });
+    const response = await instance.put("/api/diningHalls/updateDiningHall", { diningHallData });
     return response.data;
   } catch (err) {
     console.log(err);
@@ -184,7 +180,7 @@ export const editDiningHall = async (diningHallData) => {
 
 export const editMenuItem = async (menuItem) => {
   try {
-    const response = await instance.put("/editMenuItem", { menuItem });
+    const response = await instance.put("api/menuItems/editMenuItem", { menuItem });
     return response.data;
   } catch (err) {
     console.log(err);
@@ -195,7 +191,7 @@ export const editMenuItem = async (menuItem) => {
 
 export const deleteMenuItem = async (menuItemId) => {
   try {
-    const response = await instance.delete(`deleteMenuItem/${menuItemId}`);
+    const response = await instance.delete(`/api/menuItems/deleteMenuItem/${menuItemId}`);
     return response.data;
   } catch (err) {
     console.log(err);
@@ -206,7 +202,7 @@ export const deleteMenuItem = async (menuItemId) => {
 
 export const addMenuItem = async (menuItem) => {
   try {
-    const response = await instance.post("/addMenuItem", { menuItem });
+    const response = await instance.post("/api/menuItems/addMenuItem", { menuItem });
     return response.data;
   } catch (err) {
     console.log(err);

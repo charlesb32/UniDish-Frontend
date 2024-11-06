@@ -7,7 +7,7 @@ const DeleteDiningHall = ({ open, onClose, diningHall }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = async () => {
-    await deleteDiningHall(diningHall.dining_hall[0]);
+    await deleteDiningHall(diningHall.dining_hall.id);
     dispatch(incrementUpdateCounter());
     onClose();
   };
@@ -17,7 +17,7 @@ const DeleteDiningHall = ({ open, onClose, diningHall }) => {
         <Typography variant="h6">
           Are you sure you want to delete{" "}
           {diningHall && diningHall.dining_hall
-            ? diningHall.dining_hall[1]
+            ? diningHall.dining_hall.name
             : ""}{" "}
           Dining Hall? <br />
           Warning: Deleteing this dining hall will also delete all of its
