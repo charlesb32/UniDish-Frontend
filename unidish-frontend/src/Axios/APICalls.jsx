@@ -261,7 +261,7 @@ export const getOverallRestaurantRating = async (restId) => {
 
 export const createReview = async (reviewInfo) => {
   try {
-    const response = await instance.post("/createReview", { reviewInfo });
+    const response = await instance.post("/api/reviews/addReview", { reviewInfo });
     return response.data;
   } catch (err) {
     console.log(err);
