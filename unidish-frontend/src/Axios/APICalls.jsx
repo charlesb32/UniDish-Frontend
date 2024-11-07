@@ -285,7 +285,7 @@ export const getReviewComments = async (reviewId, currUserId) => {
 
 export const createComment = async (commentInfo) => {
   try {
-    const response = await instance.post("/createComment", { commentInfo });
+    const response = await instance.post("/api/comments/addComment", { commentInfo });
     return response.data;
   } catch (err) {
     console.log(err);
