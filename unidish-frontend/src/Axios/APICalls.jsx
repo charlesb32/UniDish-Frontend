@@ -226,7 +226,7 @@ export const getReviews = async (restId, currUserId) => {
 
 export const like = async (likeInfo) => {
   try {
-    const response = await instance.post("/like", { likeInfo });
+    const response = await instance.post("/api/likes/like", { likeInfo });
     return response.data;
   } catch (err) {
     console.log(err);
@@ -237,7 +237,7 @@ export const like = async (likeInfo) => {
 
 export const dislike = async (dislikeInfo) => {
   try {
-    const response = await instance.post("/dislike", { dislikeInfo });
+    const response = await instance.post("/api/dislikes/dislike", { dislikeInfo });
     return response.data;
   } catch (err) {
     console.log(err);
